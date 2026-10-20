@@ -52,8 +52,9 @@ describe("almacenamiento", () => {
     expect(load(kv).items["f:7x8"].interval).toBe(5);
   });
   it("migra datos incompletos sin romperse", () => {
-    expect(migrate(null).version).toBe(1);
+    expect(migrate(null).version).toBe(2);
     expect(migrate({ items: { x: 1 } }).settings.sessionLength).toBe(25);
+    expect(migrate({ items: { x: 1 } }).items).toEqual({}); // ítem dañado se descarta
   });
   it("racha tolera un día libre", () => {
     const d = (k: number) => dayKey(T0 - k * DAY);

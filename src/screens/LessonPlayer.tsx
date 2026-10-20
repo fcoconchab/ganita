@@ -11,11 +11,13 @@ interface Props {
   lesson: Lesson;
   onExit: () => void;
   onComplete: (bossCorrect: number, medianMs: number) => void;
+  /** cada respuesta, para el registro de tiempos */
+  onAnswer?: (r: DrillResult) => void;
 }
 
 type Phase = "intro" | "drill" | "result";
 
-export function LessonPlayer({ lesson, onExit, onComplete }: Props) {
+export function LessonPlayer({ lesson, onExit, onComplete, onAnswer }: Props) {
   const [idx, setIdx] = useState(0);
   const [phase, setPhase] = useState<Phase>("intro");
   const [run, setRun] = useState(0);
@@ -64,6 +66,7 @@ export function LessonPlayer({ lesson, onExit, onComplete }: Props) {
         questions={questions}
         mode={mode}
         fastMs={lesson.targetMs / 2}
+        onAnswer={onAnswer}
         onExit={() => setPhase("intro")}
         onFinish={(rs) => {
           setLast(rs);

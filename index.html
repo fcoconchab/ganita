@@ -13,6 +13,15 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="./icon.svg" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <script>
+      // Aplica el tema guardado antes de pintar, para que no parpadee.
+      try {
+        var raw = localStorage.getItem("ganita:v2") || localStorage.getItem("ganita:v1");
+        var t = raw && JSON.parse(raw).settings && JSON.parse(raw).settings.theme;
+        if (t === "oscuro") document.documentElement.dataset.theme = "dark";
+        if (t === "claro") document.documentElement.dataset.theme = "light";
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

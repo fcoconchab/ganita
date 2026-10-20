@@ -16,6 +16,8 @@ export interface DrillQuestion {
   stepsTitle?: string;
   /** ayuda visible antes de responder (práctica guiada) */
   scaffold?: ReactNode;
+  /** reaparición después de un error (ya vio la respuesta) */
+  retry?: boolean;
 }
 
 export interface DrillResult {
@@ -26,6 +28,8 @@ export interface DrillResult {
   ok: boolean;
   ms: number;
   skipped: boolean;
+  retry: boolean;
+  mode: DrillMode;
 }
 
 export type DrillMode = "review" | "diagnostic" | "guided" | "practice" | "boss";
@@ -79,7 +83,7 @@ export function Drill({ questions, mode, onAnswer, onFinish, onExit, fastMs = 15
   const settle = useCallback((ok: boolean, skipped: boolean) => {
     if (!q) return;
     const ms = Math.round(performance.now() - t0.current);
-    const r: DrillResult = { key: q.key, a: q.a, b: q.b, answer: q.answer, ok, ms, skipped };
+    const r: DrillResult = { key: q.key, a: q.a, b: q.b, answer: q.answer, ok, ms, skipped, retry: !!q.retry, mode };
     results.current.push(r);
     onAnswer?.(r);
     if (ok) {
@@ -96,7 +100,7 @@ export function Drill({ questions, mode, onAnswer, onFinish, onExit, fastMs = 15
       requeued.current[q.key] = n + 1;
       setQueue((qs) => {
         const copy = [...qs];
-        copy.splice(requeueIndex(i, copy.length), 0, { ...q, isNew: false });
+        copy.splice(requeueIndex(i, copy.length), 0, { ...q, isNew: false, retry: true });
         return copy;
       });
     }

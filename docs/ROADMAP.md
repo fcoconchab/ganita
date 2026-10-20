@@ -31,7 +31,7 @@ Regla: **no se empieza un hito sin cerrar el anterior.** "Perfecto" no se diseñ
 | # | Hito | Contenido | Estado |
 |---|---|---|---|
 | 0 | **Fase 0 en tu iPhone** | Arsenal, diagnóstico, repaso espaciado, lección ×11 | Publicado · falta validar en iPhone |
-| 0.5 | **Cimientos** | Respaldo del progreso (exportar/importar), ajustes (largo de sesión, sonido, tema), correcciones de tu prueba | Pendiente |
+| 0.5 | **Cimientos** | Respaldo del progreso (exportar/importar), ajustes (largo de sesión, sonido, tema), registro de tiempos, correcciones de tu prueba | En curso · respaldo, ajustes y tiempos publicados; faltan correcciones de tu prueba |
 | 1a | **Victorias rápidas** | ×5 · ×25 · ×125 · ×9 · ×99 · cuadrados terminados en 5 | Pendiente |
 | 1b | **Métodos generales** | Compensación · complemento · distributiva de izquierda a derecha | Pendiente |
 | 2 | **Primeros shows** | Raíz cúbica de 6 dígitos · raíz quinta · cubos 1-10 al Arsenal · modo público | Pendiente |
@@ -50,6 +50,6 @@ La investigación (`docs/INVESTIGACION_PROMPT.md`) puede reordenar los hitos 1c 
 
 | Riesgo | Mitigación | Confianza |
 |---|---|---|
-| iOS borra datos de sitios web sin uso por 7 días | No aplica a apps agregadas a inicio, pero igual habrá respaldo (hito 0.5) | Media-alta |
-| Umbrales de tiempo (1,5 s / 3 s) mal calibrados para ti | Se revisan con tus datos reales después de 2 semanas | Media |
+| iOS borra datos de sitios web sin uso por 7 días | No aplica a apps agregadas a inicio; además hay respaldo en Ajustes y un aviso en Hoy si pasan 14 días sin respaldar | Media-alta |
+| Umbrales de tiempo (1,5 s / 3 s) mal calibrados para ti | Registro de tiempos activo desde el hito 0.5; se revisan con 14 días y 300 respuestas (Ajustes → Tus tiempos) | Media |
 | Demasiadas lecciones nuevas a la vez | Máximo 1 técnica nueva cada 2-3 días; el Arsenal es diario | Alta |

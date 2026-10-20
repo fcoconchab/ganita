@@ -145,7 +145,7 @@ La tabla del 12 es una convención escolar sin base cognitiva. El Arsenal llega 
 4. Errores de la sesión                            reaparecen 3 preguntas después
 ```
 
-Largo por defecto: 25 preguntas (unos 5 minutos). Configurable.
+Largo por defecto: 25 preguntas (unos 5 minutos). Se cambia en Ajustes: 10, 15, 25 o 40.
 
 ---
 
@@ -194,12 +194,14 @@ ganita/
 │   │   ├── mastery.ts        rangos de dominio
 │   │   ├── facts.ts          hechos del Arsenal y estrategias de respaldo
 │   │   ├── session.ts        arma la sesión diaria
-│   │   └── storage.ts        guarda y carga el progreso
+│   │   ├── storage.ts        guarda, carga y migra el progreso
+│   │   ├── backup.ts         exportar, importar y fusionar respaldos
+│   │   └── timing.ts         análisis del registro de tiempos
 │   ├── content/
 │   │   ├── techniques.json   catálogo completo de técnicas
 │   │   └── lessons/          una lección por archivo
 │   ├── ui/                   piezas visuales (teclado, tarjeta de problema, grilla)
-│   ├── screens/              pantallas (Hoy, Arsenal, Aprender, Lección, Sesión)
+│   ├── screens/              pantallas (Hoy, Arsenal, Aprender, Lección, Sesión, Ajustes, Tiempos)
 │   └── styles/               tokens de diseño y estilos
 └── tests/                    pruebas de la lógica
 ```
@@ -208,16 +210,26 @@ Regla: **`core/` no conoce React**. Así la lógica se prueba sola y se podría 
 
 ### Datos guardados
 
-Un solo objeto versionado en `localStorage` (`ganita:v1`):
+Un solo objeto versionado en `localStorage` (`ganita:v2`). La clave `ganita:v1` de la Fase 0 se lee al migrar y nunca se borra: queda como copia.
 
 ```
 {
-  version: 1,
-  items:   { "f:7x8": { interval, ease, due, reps, lapses, history: [{ok, ms, at}] }, ... },
-  lessons: { "mul.x11": { completedAt, bestBoss } },
-  stats:   { streakDays, lastSessionDay, sessions }
+  version: 2,
+  items:    { "f:7x8": { interval, ease, due, reps, lapses, history: [{ok, ms, at}] }, ... },   // últimos 12 intentos
+  lessons:  { "x11": { completedAt, bestBoss } },
+  stats:    { days: ["2026-10-20", ...], sessions, answers },
+  settings: { sessionLength, sound, theme: "sistema" | "oscuro" | "claro" },
+  log:      [{ at, key, a, b, ms, ok, mode, retry?, skip? }, ...],                            // registro de tiempos, máx. 20.000
+  meta:     { createdAt, lastBackupAt }
 }
 ```
+
+| Pieza | Archivo | Regla |
+|---|---|---|
+| Migración | `src/core/storage.ts` | Acepta cualquier versión anterior; descarta solo lo mal formado. La v1 recupera sus tiempos del historial como registro `previo` |
+| Respaldo | `src/core/backup.ts` | Exportar = archivo `.json` con el progreso completo. Importar **fusiona**: une intentos, registro, lecciones y días sin duplicar; el estado de repaso de cada ítem sale del lado con el intento más reciente; los ajustes del teléfono se mantienen. Importar dos veces el mismo archivo no cambia nada |
+| Deshacer | `ganita:antes-de-importar` | Copia tomada justo antes de importar. Solo se ofrece si no se practicó después (si no, se perderían esas respuestas) |
+| Registro de tiempos | `src/core/timing.ts` | Cada respuesta con su modo. Para calibrar cuentan solo primeros intentos de hechos (sin reintentos, sin "No sé", sin `previo`). Se revisan los umbrales con 14 días y 300 respuestas. Exporta planilla `.csv` separada por punto y coma |
 
 ---
 
@@ -226,7 +238,7 @@ Un solo objeto versionado en `localStorage` (`ganita:v1`):
 - **Los números mandan.** Números grandes en Fraunces, con mucho espacio y nada más en pantalla mientras calculas.
 - **Teclado propio**, grande y al alcance del pulgar, con sonido sutil. El iPhone no permite vibración desde una app web, así que la respuesta táctil se reemplaza con sonido y animación.
 - **Las técnicas se ven en movimiento**: cifras que se separan, columnas que se suman.
-- **Oscuro por defecto** (tinta azul profunda con acento azafrán), con tema claro.
+- **Tema**: tinta azul profunda con acento azafrán, más un tema claro. Por defecto sigue al teléfono ("Sistema"); en Ajustes se fija oscuro o claro.
 - **Cero culpa**: racha con días libres permitidos, sin notificaciones agresivas.
 
 ---

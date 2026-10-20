@@ -21,3 +21,17 @@ export const IconLock = () => (
 export const IconChevron = () => (
   <svg viewBox="0 0 24 24" width="18" height="18" {...P}><path d="M9 6l6 6-6 6" /></svg>
 );
+export const IconBack = () => (
+  <svg viewBox="0 0 24 24" width="22" height="22" {...P}><path d="M15 5l-7 7 7 7" /></svg>
+);
+export const IconSettings = () => (
+  <svg viewBox="0 0 24 24" width="22" height="22" {...P}>
+    <path d="M4 7h9M17 7h3M4 17h3M11 17h9" /><circle cx="15" cy="7" r="2.2" /><circle cx="9" cy="17" r="2.2" />
+  </svg>
+);
+export const IconUp = () => (
+  <svg viewBox="0 0 24 24" width="20" height="20" {...P}><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5" /><path d="M5 14v4.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V14" /></svg>
+);
+export const IconDown = () => (
+  <svg viewBox="0 0 24 24" width="20" height="20" {...P}><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5" /><path d="M5 14v4.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V14" /></svg>
+);

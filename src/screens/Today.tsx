@@ -4,7 +4,7 @@ import { tierProgress, unlockedTiers } from "../core/session";
 import { isDue } from "../core/srs";
 import { dayKey, streak, type Progress } from "../core/storage";
 import { LESSONS } from "../content/lessons/x11";
-import { IconChevron } from "../ui/icons";
+import { IconChevron, IconSettings } from "../ui/icons";
 
 interface Props {
   progress: Progress;
@@ -12,12 +12,15 @@ interface Props {
   onDiagnostic: () => void;
   onSession: () => void;
   onLesson: (id: string) => void;
+  onSettings: () => void;
 }
+
+const BACKUP_NUDGE_DAYS = 14;
 
 const fecha = (t: number) =>
   new Date(t).toLocaleDateString("es-CL", { weekday: "long", day: "numeric", month: "long" });
 
-export function Today({ progress, now, onDiagnostic, onSession, onLesson }: Props) {
+export function Today({ progress, now, onDiagnostic, onSession, onLesson, onSettings }: Props) {
   const items = progress.items;
   const seen = FACTS.filter((f) => items[f.id]?.history.length).length;
   const due = Object.entries(items).filter(([, s]) => s.history.length && isDue(s, now)).length;
@@ -28,12 +31,18 @@ export function Today({ progress, now, onDiagnostic, onSession, onLesson }: Prop
   const nextLesson = LESSONS.find((l) => !progress.lessons[l.id]);
   const days = streak(progress.stats.days, now);
   const doneToday = progress.stats.days.includes(dayKey(now));
+  // Recordatorio suave de respaldo: con algo de progreso y sin respaldo en 14 días.
+  const lastBackup = progress.meta.lastBackupAt;
+  const backupNudge = progress.stats.answers >= 100 && (lastBackup === null || now - lastBackup > BACKUP_NUDGE_DAYS * 86_400_000);
 
   return (
     <div className="screen">
-      <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-        <span className="eyebrow">{fecha(now)}</span>
-        <h1 className="title-xl">Hoy</h1>
+      <div className="row between" style={{ alignItems: "flex-start" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <span className="eyebrow">{fecha(now)}</span>
+          <h1 className="title-xl">Hoy</h1>
+        </div>
+        <button className="close" onClick={onSettings} aria-label="Ajustes"><IconSettings /></button>
       </div>
 
       {seen === 0 ? (
@@ -50,7 +59,7 @@ export function Today({ progress, now, onDiagnostic, onSession, onLesson }: Prop
             <span className="pill accent">{doneToday ? "Sesión extra" : "Sesión de hoy"}</span>
             <span className="small muted">≈ {Math.round(progress.settings.sessionLength / 5)} min</span>
           </div>
-          <h2 style={{ fontSize: 26 }}>{due > 0 ? `${due} repasos te esperan` : "Estás al día"}</h2>
+          <h2 style={{ fontSize: 26 }}>{due === 1 ? "1 repaso te espera" : due > 0 ? `${due} repasos te esperan` : "Estás al día"}</h2>
           <p className="muted">
             {due > 0
               ? "Repasos vencidos, algunos hechos nuevos y lo más lento, mezclados."
@@ -77,6 +86,13 @@ export function Today({ progress, now, onDiagnostic, onSession, onLesson }: Prop
           {current.id === "A4" ? "Último nivel del Arsenal." : "Con el 80% consolidado se abre el nivel siguiente."}
         </p>
       </div>
+
+      {backupNudge && (
+        <button className="card nudge" onClick={onSettings}>
+          <span className="small"><b>Respalda tu progreso.</b> {lastBackup === null ? "Todavía no tienes un respaldo." : "Tu último respaldo tiene más de dos semanas."} Toma 10 segundos.</span>
+          <IconChevron />
+        </button>
+      )}
 
       {nextLesson && (
         <button className="card lesson-card" onClick={() => onLesson(nextLesson.id)}>

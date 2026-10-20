@@ -4,23 +4,29 @@ import { FACT_BY_ID, TIERS, factsOfTier, strategyFor, type TierId } from "./core
 import { RANK_ORDER, median, rankOf } from "./core/mastery";
 import { buildDiagnostic, rng, type Question } from "./core/session";
 import { newItem, review } from "./core/srs";
-import { dayKey, load, save, type Progress } from "./core/storage";
+import { mergeProgress } from "./core/backup";
+import { appendLog, canUndo, clearUndo, dayKey, load, loadUndo, save, saveUndo, type Progress, type Settings as SettingsT } from "./core/storage";
 import { LESSONS } from "./content/lessons/x11";
 import { Arsenal } from "./screens/Arsenal";
 import { Learn } from "./screens/Learn";
 import { LessonPlayer } from "./screens/LessonPlayer";
+import { Settings } from "./screens/Settings";
 import { Summary } from "./screens/Summary";
+import { Times } from "./screens/Times";
 import { Today } from "./screens/Today";
 import { Drill, type DrillMode, type DrillQuestion, type DrillResult } from "./ui/Drill";
 import { IconGrid, IconPath, IconToday } from "./ui/icons";
 import { setSound } from "./ui/sound";
+import { applyTheme, onSystemThemeChange } from "./ui/theme";
 
 type Tab = "hoy" | "arsenal" | "aprender";
 type View =
   | { type: "tabs" }
   | { type: "drill"; title: string; mode: DrillMode; questions: DrillQuestion[]; fastMs: number; note?: string }
   | { type: "summary"; title: string; results: DrillResult[]; fastMs: number; note?: string }
-  | { type: "lesson"; id: string };
+  | { type: "lesson"; id: string }
+  | { type: "settings" }
+  | { type: "times" };
 
 const targetOf = (factId: string) => TIERS.find((t) => t.id === FACT_BY_ID[factId]?.tier)?.targetMs ?? 1500;
 
@@ -37,20 +43,50 @@ export default function App() {
   const [progress, setProgress] = useState<Progress>(() => load());
   const [tab, setTab] = useState<Tab>("hoy");
   const [view, setView] = useState<View>({ type: "tabs" });
+  const [undo, setUndo] = useState(() => loadUndo());
   const now = Date.now();
 
-  useEffect(() => save(progress), [progress]);
+  useEffect(() => { save(progress); }, [progress]);
   useEffect(() => setSound(progress.settings.sound), [progress.settings.sound]);
+  useEffect(() => {
+    const theme = progress.settings.theme;
+    applyTheme(theme);
+    return onSystemThemeChange(() => applyTheme(theme));
+  }, [progress.settings.theme]);
 
-  /** Cada respuesta a un hecho actualiza su repaso al instante (si cierras la app, no se pierde). */
+  /**
+   * Cada respuesta queda en el registro de tiempos, y si es un hecho actualiza
+   * su repaso al instante (si cierras la app, no se pierde).
+   */
   const onAnswer = useCallback((r: DrillResult) => {
-    if (!r.key.startsWith("f:")) return;
     setProgress((p) => {
       const at = Date.now();
+      const log = appendLog(p.log, {
+        at, key: r.key, a: r.a, b: r.b, ms: r.ms, ok: r.ok, mode: r.mode,
+        ...(r.retry ? { retry: true } : {}), ...(r.skipped ? { skip: true } : {}),
+      });
+      if (!r.key.startsWith("f:")) return { ...p, log };
       const prev = p.items[r.key] ?? newItem(at);
-      return { ...p, items: { ...p.items, [r.key]: review(prev, { ok: r.ok, ms: r.ms, at }, targetOf(r.key)) } };
+      return { ...p, log, items: { ...p.items, [r.key]: review(prev, { ok: r.ok, ms: r.ms, at }, targetOf(r.key)) } };
     });
   }, []);
+
+  const changeSettings = (s: Partial<SettingsT>) => setProgress((p) => ({ ...p, settings: { ...p.settings, ...s } }));
+
+  const importBackup = (incoming: Progress) => {
+    saveUndo(progress);
+    setUndo(loadUndo());
+    setProgress((p) => mergeProgress(p, incoming));
+  };
+
+  const undoImport = () => {
+    const u = loadUndo();
+    if (!u) return;
+    // los ajustes se mantienen; se recupera todo lo demás tal como estaba antes de importar
+    setProgress((p) => ({ ...u.progress, settings: p.settings }));
+    setUndo(null);
+    clearUndo();
+  };
 
   const finish = useCallback((title: string, fastMs: number, note?: string) => (results: DrillResult[]) => {
     const at = Date.now();
@@ -131,6 +167,7 @@ export default function App() {
         <LessonPlayer
           lesson={lesson}
           onExit={() => setView({ type: "tabs" })}
+          onAnswer={onAnswer}
           onComplete={(correct, med) => {
             const at = Date.now();
             setProgress((p) => {
@@ -149,10 +186,42 @@ export default function App() {
     );
   }
 
+  if (view.type === "settings") {
+    return (
+      <div className="app">
+        <Settings
+          progress={progress}
+          now={now}
+          undo={canUndo(progress, undo) ? undo : null}
+          onSettings={changeSettings}
+          onExported={(at) => setProgress((p) => ({ ...p, meta: { ...p.meta, lastBackupAt: at } }))}
+          onImport={importBackup}
+          onUndo={undoImport}
+          onTimes={() => setView({ type: "times" })}
+          onBack={() => setView({ type: "tabs" })}
+        />
+      </div>
+    );
+  }
+
+  if (view.type === "times") {
+    return (
+      <div className="app">
+        <Times progress={progress} now={now} onBack={() => setView({ type: "settings" })} />
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       {tab === "hoy" && (
-        <Today progress={progress} now={now} onDiagnostic={() => startDiagnostic("A1")} onSession={startDaily} onLesson={(id) => setView({ type: "lesson", id })} />
+        <Today
+          progress={progress} now={now}
+          onDiagnostic={() => startDiagnostic("A1")}
+          onSession={startDaily}
+          onLesson={(id) => setView({ type: "lesson", id })}
+          onSettings={() => setView({ type: "settings" })}
+        />
       )}
       {tab === "arsenal" && <Arsenal progress={progress} now={now} onPracticeTier={practiceTier} onDiagnostic={startDiagnostic} />}
       {tab === "aprender" && <Learn progress={progress} onLesson={(id) => setView({ type: "lesson", id })} />}
