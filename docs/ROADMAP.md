@@ -31,7 +31,7 @@ Regla: **no se empieza un hito sin cerrar el anterior.** "Perfecto" no se diseñ
 | # | Hito | Contenido | Estado |
 |---|---|---|---|
 | 0 | **Fase 0 en tu iPhone** | Arsenal, diagnóstico, repaso espaciado, lección ×11 | Publicado · falta validar en iPhone |
-| 0.5 | **Cimientos** | Respaldo del progreso (exportar/importar), ajustes (largo de sesión, sonido, tema), registro de tiempos, correcciones de tu prueba | En curso · respaldo, ajustes y tiempos publicados; faltan correcciones de tu prueba |
+| 0.5 | **Cimientos** | Respaldo del progreso (exportar/importar), ajustes (largo de sesión, sonido, tema), registro de tiempos, correcciones de tu prueba | Publicado · respaldo, ajustes, tiempos y pulido visual del juego; faltan tus correcciones del iPhone y 3 días de uso |
 | 1a | **Victorias rápidas** | ×5 · ×25 · ×125 · ×9 · ×99 · cuadrados terminados en 5 | Pendiente |
 | 1b | **Métodos generales** | Compensación · complemento · distributiva de izquierda a derecha | Pendiente |
 | 2 | **Primeros shows** | Raíz cúbica de 6 dígitos · raíz quinta · cubos 1-10 al Arsenal · modo público | Pendiente |

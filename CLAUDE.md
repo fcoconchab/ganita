@@ -30,6 +30,6 @@ Cada push a `main` publica en GitHub Pages con `.github/workflows/deploy.yml`.
 - Toda regla o ejemplo matemático se verifica con un test o ejecutando código. Las estrategias de respaldo de los hechos se prueban todas en `tests/facts.test.ts`.
 - Los textos de la app van en español de Chile: decimales con coma, miles con punto, sin guiones largos (—).
 - Colores y tipografía solo desde los tokens de `src/styles/tokens.css`.
-- El progreso del usuario se guarda en `localStorage` (`ganita:v1`). Si cambia el formato, sube la versión y escribe una migración en `src/core/storage.ts`; nunca borres el progreso.
+- El progreso del usuario se guarda en `localStorage` (`ganita:v2`; la clave `ganita:v1` queda como copia). Si cambia el formato, sube la versión y escribe una migración en `src/core/storage.ts`; nunca borres el progreso.
 - Al entregar cambios a Francisco: archivos completos, nunca diffs.
 - Antes de cerrar una tarea: `npm test` y `npm run build` sin errores.

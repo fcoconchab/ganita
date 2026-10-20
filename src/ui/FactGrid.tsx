@@ -70,3 +70,21 @@ function Row({ r, cols, render }: { r: number; cols: number[]; render: (c: numbe
     </>
   );
 }
+
+/** Versión diminuta para Hoy: solo color, sin números. Se ve el nivel de un vistazo. */
+export function MiniMap({ tier, items, now }: { tier: TierId; items: Items; now: number }) {
+  const [rows, cols] =
+    tier === "A1" ? [range(2, 9), range(2, 9)] :
+    tier === "A2" ? [range(11, 19), range(2, 9)] :
+    tier === "A3" ? [range(11, 19), range(11, 19)] :
+    [[0], range(20, 30)];
+  const id = (r: number, c: number) => (tier === "A4" ? idOf(c, c) : idOf(r, c));
+  return (
+    <div className="minimap" style={{ gridTemplateColumns: `repeat(${cols.length}, 1fr)` }} aria-hidden="true">
+      {rows.flatMap((r) => cols.map((c) => {
+        const st = items[id(r, c)];
+        return <i key={`${r}-${c}`} className={`r-${rankOf(st)}${isFading(st, now) ? " fade" : ""}`} />;
+      }))}
+    </div>
+  );
+}

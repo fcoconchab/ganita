@@ -5,6 +5,7 @@ import { fmt } from "../core/facts";
 import { SESSION_LENGTHS, type Progress, type Settings as SettingsT, type Theme } from "../core/storage";
 import { IconBack, IconChevron, IconDown, IconUp } from "../ui/icons";
 import { shareFile } from "../ui/share";
+import { haptic, setHaptics } from "../ui/haptics";
 import { setSound, sfx } from "../ui/sound";
 
 interface Props {
@@ -107,7 +108,17 @@ export function Settings({ progress, now, undo, onSettings, onExported, onImport
               }}
             />
           </div>
-          <p className="small muted">En el iPhone, el sonido también depende del interruptor de silencio del costado.</p>
+          <div className="set-row">
+            <span>
+              <b>Vibración</b>
+              <span className="small muted">Un toque suave al teclear y al fallar</span>
+            </span>
+            <button
+              className="switch" role="switch" aria-checked={s.haptics} aria-label="Vibración"
+              onClick={() => { const on = !s.haptics; onSettings({ haptics: on }); if (on) { setHaptics(true); haptic("ok"); } }}
+            />
+          </div>
+          <p className="small muted">En el iPhone, el sonido depende del interruptor de silencio del costado. La vibración necesita iOS 18 o más.</p>
         </section>
 
         <section className="card">

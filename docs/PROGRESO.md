@@ -7,11 +7,24 @@ Registro de lo que se hizo, en qué chat y qué quedó pendiente. **Cada chat lo
 | Hito | Estado | Chat a cargo |
 |---|---|---|
 | 0 · Fase 0 en tu iPhone | Publicado, falta validar en iPhone | Francisco |
-| 0.5 · Cimientos | En curso: 1 a 3 publicados, faltan correcciones de la prueba en iPhone | Chat "0.5 Cimientos" |
+| 0.5 · Cimientos | Publicado; faltan correcciones de la prueba en iPhone y 3 días de uso | Chat "0.5 Cimientos" |
 | 1a · Victorias rápidas | Pendiente (después de 0.5) | Chat "1a Victorias rápidas" |
 | Investigación | Pendiente | Chat "Investigación" |
 
 ## Entradas
+
+### 2026-10-20 · Chat "0.5 Cimientos" (parte 2: el juego más bonito y el reintento)
+- **Hecho:**
+  - Reintentos: un acierto justo después de un error ahora agenda para mañana (antes, 2 días como si se supiera de memoria) y no entra al historial ni a la mediana. En habilidades, el reintento no borra el error.
+  - Cuentas de ábaco: la barra de progreso es una fila de cuentas que se colorean (verde, azafrán rápida, coral error); la misma fila en el resumen y en Hoy ("Hoy: 15 de 17 bien, 13 rápidas").
+  - Respuesta: la pregunta entra con movimiento, el acierto crece y muestra su tiempo, la rápida se pinta azafrán con un anillo; el error tiembla, achica el problema y muestra el camino línea por línea. Racha visible desde 3 seguidas y celebración cada 5.
+  - Sonido nuevo tipo marimba: escala pentatónica que sube con la racha, brillo en las rápidas, clic seco en las teclas. Vibración (Android; iPhone con iOS 18+), con interruptor en Ajustes.
+  - Teclado con teclas que se hunden. Resumen con el % que cuenta, "Subieron de rango" (celdas que cambian de color), la más rápida y "Para repasar" solo con errores y lentas.
+  - Hoy: saludo según la hora, mini mapa del nivel actual (toca para ir al Arsenal), etiquetas en minúscula inicial en vez de mayúsculas espaciadas.
+  - Tema claro: números legibles sobre celdas Aprendiz y Fluido (nuevo token `--r-ink-soft`).
+- **Verificado:** 64 tests, build sin errores. Sesiones completas jugadas en 390 × 844 (pantalla del iPhone 14 instalada) en oscuro y claro, con capturas de cada estado y un GIF de la sesión. Cero errores de consola.
+- **Decisiones:** reintento = fijar, no medir (`relearn`); racha y celebración cada 5 sin castigar al fallar (la racha solo vuelve a 0); vibración activada por defecto.
+- **Pendiente:** validar en iPhone real la vibración (confianza media: depende del truco del interruptor de Safari en iOS 18), el sonido con la marimba y la hoja de compartir del respaldo; correcciones de la prueba en iPhone; 3 días de uso para cerrar el hito.
 
 ### 2026-10-20 · Chat "0.5 Cimientos" (parte 1: respaldo, ajustes, tiempos)
 - **Hecho:**

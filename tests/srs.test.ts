@@ -63,3 +63,34 @@ describe("rangos", () => {
     expect(rankOf(withHist([900, 1000, 1400], true, 21))).toBe("maquina");
   });
 });
+
+describe("reintento después de un error", () => {
+  it("acierto: vuelve mañana, sin entrar al historial ni subir la facilidad", async () => {
+    const { relearn } = await import("../src/core/srs");
+    let s = review(newItem(T0), { ok: true, ms: 1000, at: T0 }, 1500);
+    s = review(s, { ok: false, ms: 2500, at: T0 + 2 * DAY }, 1500); // error: intervalo 0
+    const lapsed = s;
+    const r = relearn(s, { ok: true, ms: 600, at: T0 + 2 * DAY + 60_000 });
+    expect(r.interval).toBe(1);
+    expect(r.due).toBe(T0 + 3 * DAY + 60_000);
+    expect(r.ease).toBe(lapsed.ease);
+    expect(r.history).toEqual(lapsed.history);
+    expect(r.lapses).toBe(lapsed.lapses);
+    // al día siguiente, un acierto normal salta a 3 días (no se queda en 1)
+    expect(review(r, { ok: true, ms: 2000, at: T0 + 3 * DAY }, 1500).interval).toBe(3);
+  });
+  it("antes: un reintento rápido daba 2 días como si se supiera de memoria", () => {
+    let s = review(newItem(T0), { ok: false, ms: 2500, at: T0 }, 1500);
+    s = review(s, { ok: true, ms: 600, at: T0 + 60_000 }, 1500);
+    expect(s.interval).toBe(2); // por eso los reintentos pasan por relearn
+  });
+  it("error en el reintento: sigue vencido y no castiga dos veces", async () => {
+    const { relearn } = await import("../src/core/srs");
+    const s = review(newItem(T0), { ok: false, ms: 2500, at: T0 }, 1500);
+    const r = relearn(s, { ok: false, ms: 900, at: T0 + 60_000 });
+    expect(r.due).toBe(T0 + 60_000);
+    expect(r.ease).toBe(s.ease);
+    expect(r.lapses).toBe(1);
+    expect(r.history).toHaveLength(1);
+  });
+});

@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { aggregateSkills, buildDaily, skillKey } from "./core/daily";
 import { FACT_BY_ID, TIERS, factsOfTier, strategyFor, type TierId } from "./core/facts";
 import { RANK_ORDER, median, rankOf } from "./core/mastery";
-import { buildDiagnostic, rng, type Question } from "./core/session";
-import { newItem, review } from "./core/srs";
+import { buildDiagnostic, rng, type Items, type Question } from "./core/session";
+import { newItem, relearn, review } from "./core/srs";
 import { mergeProgress } from "./core/backup";
 import { appendLog, canUndo, clearUndo, dayKey, load, loadUndo, save, saveUndo, type Progress, type Settings as SettingsT } from "./core/storage";
 import { LESSONS } from "./content/lessons/x11";
@@ -16,14 +16,15 @@ import { Times } from "./screens/Times";
 import { Today } from "./screens/Today";
 import { Drill, type DrillMode, type DrillQuestion, type DrillResult } from "./ui/Drill";
 import { IconGrid, IconPath, IconToday } from "./ui/icons";
+import { setHaptics } from "./ui/haptics";
 import { setSound } from "./ui/sound";
 import { applyTheme, onSystemThemeChange } from "./ui/theme";
 
 type Tab = "hoy" | "arsenal" | "aprender";
 type View =
   | { type: "tabs" }
-  | { type: "drill"; title: string; mode: DrillMode; questions: DrillQuestion[]; fastMs: number; note?: string }
-  | { type: "summary"; title: string; results: DrillResult[]; fastMs: number; note?: string }
+  | { type: "drill"; title: string; mode: DrillMode; questions: DrillQuestion[]; fastMs: number; note?: string; before: Items }
+  | { type: "summary"; title: string; results: DrillResult[]; fastMs: number; note?: string; before: Items }
   | { type: "lesson"; id: string }
   | { type: "settings" }
   | { type: "times" };
@@ -48,6 +49,7 @@ export default function App() {
 
   useEffect(() => { save(progress); }, [progress]);
   useEffect(() => setSound(progress.settings.sound), [progress.settings.sound]);
+  useEffect(() => setHaptics(progress.settings.haptics), [progress.settings.haptics]);
   useEffect(() => {
     const theme = progress.settings.theme;
     applyTheme(theme);
@@ -67,7 +69,9 @@ export default function App() {
       });
       if (!r.key.startsWith("f:")) return { ...p, log };
       const prev = p.items[r.key] ?? newItem(at);
-      return { ...p, log, items: { ...p.items, [r.key]: review(prev, { ok: r.ok, ms: r.ms, at }, targetOf(r.key)) } };
+      const attempt = { ok: r.ok, ms: r.ms, at };
+      const next = r.retry ? relearn(prev, attempt) : review(prev, attempt, targetOf(r.key));
+      return { ...p, log, items: { ...p.items, [r.key]: next } };
     });
   }, []);
 
@@ -88,7 +92,7 @@ export default function App() {
     clearUndo();
   };
 
-  const finish = useCallback((title: string, fastMs: number, note?: string) => (results: DrillResult[]) => {
+  const finish = useCallback((title: string, fastMs: number, note: string | undefined, before: Items) => (results: DrillResult[]) => {
     const at = Date.now();
     setProgress((p) => {
       const items = { ...p.items };
@@ -107,18 +111,18 @@ export default function App() {
         },
       };
     });
-    setView({ type: "summary", title, results, fastMs, note });
+    setView({ type: "summary", title, results, fastMs, note, before });
   }, []);
 
   const startDaily = () => {
     const qs = buildDaily(progress, LESSONS, Date.now()).map(toDrill);
-    setView({ type: "drill", title: "Sesión de hoy", mode: "review", questions: qs, fastMs: 1500 });
+    setView({ type: "drill", title: "Sesión de hoy", mode: "review", questions: qs, fastMs: 1500, before: progress.items });
   };
 
   const startDiagnostic = (tier: TierId = "A1") => {
     const qs = buildDiagnostic(tier).map(toDrill);
     setView({
-      type: "drill", title: `Diagnóstico ${tier}`, mode: "diagnostic", questions: qs, fastMs: 1500,
+      type: "drill", title: `Diagnóstico ${tier}`, mode: "diagnostic", questions: qs, fastMs: 1500, before: progress.items,
       note: "Los hechos lentos o con error quedan agendados para repasar primero. El mapa del Arsenal ya muestra tu punto de partida.",
     });
   };
@@ -134,7 +138,7 @@ export default function App() {
         const flip = rand() < 0.5;
         return toDrill({ key: f.id, a: flip ? f.b : f.a, b: flip ? f.a : f.b, answer: f.answer, isNew: !progress.items[f.id]?.history.length });
       });
-    setView({ type: "drill", title: `Práctica ${tier}`, mode: "review", questions: weak, fastMs: targetOf(weak[0].key) });
+    setView({ type: "drill", title: `Práctica ${tier}`, mode: "review", questions: weak, fastMs: targetOf(weak[0].key), before: progress.items });
   };
 
   if (view.type === "drill") {
@@ -145,7 +149,7 @@ export default function App() {
           mode={view.mode}
           fastMs={view.fastMs}
           onAnswer={onAnswer}
-          onFinish={finish(view.title, view.fastMs, view.note)}
+          onFinish={finish(view.title, view.fastMs, view.note, view.before)}
           onExit={() => setView({ type: "tabs" })}
         />
       </div>
@@ -155,7 +159,7 @@ export default function App() {
   if (view.type === "summary") {
     return (
       <div className="app">
-        <Summary title={view.title} results={view.results} fastMs={view.fastMs} note={view.note} onDone={() => setView({ type: "tabs" })} />
+        <Summary title={view.title} results={view.results} fastMs={view.fastMs} note={view.note} before={view.before} after={progress.items} onDone={() => setView({ type: "tabs" })} />
       </div>
     );
   }
@@ -221,6 +225,7 @@ export default function App() {
           onSession={startDaily}
           onLesson={(id) => setView({ type: "lesson", id })}
           onSettings={() => setView({ type: "settings" })}
+          onArsenal={() => setTab("arsenal")}
         />
       )}
       {tab === "arsenal" && <Arsenal progress={progress} now={now} onPracticeTier={practiceTier} onDiagnostic={startDiagnostic} />}

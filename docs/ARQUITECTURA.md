@@ -95,7 +95,8 @@ Rápida (< 1,5 s) × facilidad × 1,3                 20 días
 
 - La **calificación sale del tiempo**: no tienes que decir "me costó". La app lo mide.
 - Los umbrales (1,5 s y 3 s) son para hechos del Arsenal. Cada habilidad tiene su propio tiempo objetivo.
-- Un error dentro de la sesión vuelve a aparecer 3 preguntas después, hasta acertarlo.
+- Un error dentro de la sesión vuelve a aparecer 3 preguntas después (hasta 2 veces).
+- **El reintento fija, no mide.** Cuando reaparece, ya viste la respuesta: si aciertas, el ítem vuelve mañana (intervalo 1) y el próximo acierto salta a 3 o 4 días; si fallas, sigue vencido sin castigar dos veces. El reintento no entra al historial, así no infla el rango (`relearn` en `src/core/srs.ts`).
 - Es una variante simple de SM-2, el algoritmo de Anki. Si la investigación muestra algo mejor (por ejemplo FSRS), se cambia en un solo archivo: `src/core/srs.ts`.
 
 ---
@@ -236,7 +237,10 @@ Un solo objeto versionado en `localStorage` (`ganita:v2`). La clave `ganita:v1` 
 ## 11. Diseño
 
 - **Los números mandan.** Números grandes en Fraunces, con mucho espacio y nada más en pantalla mientras calculas.
-- **Teclado propio**, grande y al alcance del pulgar, con sonido sutil. El iPhone no permite vibración desde una app web, así que la respuesta táctil se reemplaza con sonido y animación.
+- **Cuentas de ábaco.** Cada pregunta de la sesión es una cuenta en la fila de arriba: vacía, verde (bien), azafrán (rápida) o coral (error). La misma fila aparece en el resumen y en Hoy: la sesión se ve como una tira.
+- **Respuesta que se siente.** Acierto: la cifra crece un instante y muestra su tiempo. Rápida: azafrán con un anillo que se abre. Error: tiembla y el camino aparece línea por línea. Cada 5 seguidas, una pequeña celebración.
+- **Sonido de marimba.** Tonos sintetizados (sin archivos). Los aciertos seguidos suben por una escala pentatónica: la racha se escucha.
+- **Teclado propio**, grande y al alcance del pulgar, con teclas que se hunden y un clic seco. Vibración: Android con `navigator.vibrate`; iPhone con iOS 18 o más mediante el interruptor nativo de Safari (confianza media, se valida en el teléfono).
 - **Las técnicas se ven en movimiento**: cifras que se separan, columnas que se suman.
 - **Tema**: tinta azul profunda con acento azafrán, más un tema claro. Por defecto sigue al teléfono ("Sistema"); en Ajustes se fija oscuro o claro.
 - **Cero culpa**: racha con días libres permitidos, sin notificaciones agresivas.

@@ -25,6 +25,7 @@
   --r-fluido: #3f7a5f;
   --r-automatico: #4fb383;
   --r-maquina: #f0a83a;
+  --r-ink-soft: rgba(255, 255, 255, 0.85); /* texto sobre aprendiz y fluido */
 
   --display: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
   --body: "Manrope Variable", -apple-system, "SF Pro Text", system-ui, sans-serif;
@@ -42,7 +43,7 @@
     --ink: #172033; --ink-2: #4e5a6e; --ink-3: #8a93a3;
     --accent: #c9781a; --accent-ink: #ffffff; --accent-soft: rgba(201, 120, 26, 0.12);
     --good: #2f8f5b; --good-soft: rgba(47, 143, 91, 0.12); --bad: #c8503f; --bad-soft: rgba(200, 80, 63, 0.12);
-    --r-nuevo: #e4e7ed; --r-aprendiz: #e9c48a; --r-fluido: #9fd1b4; --r-automatico: #4fa679; --r-maquina: #c9781a;
+    --r-nuevo: #e4e7ed; --r-aprendiz: #e9c48a; --r-fluido: #9fd1b4; --r-automatico: #4fa679; --r-maquina: #c9781a; --r-ink-soft: rgba(23, 32, 51, 0.78);
     --shadow: 0 10px 30px rgba(40, 30, 10, 0.12);
     color-scheme: light;
   }
@@ -52,7 +53,7 @@
   --ink: #172033; --ink-2: #4e5a6e; --ink-3: #8a93a3;
   --accent: #c9781a; --accent-ink: #ffffff; --accent-soft: rgba(201, 120, 26, 0.12);
   --good: #2f8f5b; --good-soft: rgba(47, 143, 91, 0.12); --bad: #c8503f; --bad-soft: rgba(200, 80, 63, 0.12);
-  --r-nuevo: #e4e7ed; --r-aprendiz: #e9c48a; --r-fluido: #9fd1b4; --r-automatico: #4fa679; --r-maquina: #c9781a;
+  --r-nuevo: #e4e7ed; --r-aprendiz: #e9c48a; --r-fluido: #9fd1b4; --r-automatico: #4fa679; --r-maquina: #c9781a; --r-ink-soft: rgba(23, 32, 51, 0.78);
   --shadow: 0 10px 30px rgba(40, 30, 10, 0.12);
   color-scheme: light;
 }

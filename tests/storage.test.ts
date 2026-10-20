@@ -34,7 +34,7 @@ describe("migración v1 → v2", () => {
     expect(p.items).toEqual(v1.items);
     expect(p.lessons).toEqual(v1.lessons);
     expect(p.stats).toEqual(v1.stats);
-    expect(p.settings).toEqual({ sessionLength: 15, sound: false, theme: "sistema" });
+    expect(p.settings).toEqual({ sessionLength: 15, sound: false, haptics: true, theme: "sistema" });
     expect(p.meta).toEqual({ createdAt: T0, lastBackupAt: null });
   });
   it("recupera los tiempos del historial como registro 'previo'", () => {
@@ -74,7 +74,7 @@ describe("migración v1 → v2", () => {
   });
   it("valida ajustes fuera de rango", () => {
     const p = migrate({ settings: { sessionLength: 9999, sound: "sí", theme: "rosado" } }, T0);
-    expect(p.settings).toEqual({ sessionLength: 25, sound: true, theme: "sistema" });
+    expect(p.settings).toEqual({ sessionLength: 25, sound: true, haptics: true, theme: "sistema" });
   });
 });
 

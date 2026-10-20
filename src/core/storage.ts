@@ -24,6 +24,8 @@ export const SESSION_LENGTHS = [10, 15, 25, 40] as const;
 export interface Settings {
   sessionLength: number;
   sound: boolean;
+  /** vibración al teclear y responder (iPhone con iOS 18 o más; Android) */
+  haptics: boolean;
   theme: Theme;
 }
 
@@ -63,7 +65,7 @@ export interface Progress {
   };
 }
 
-export const defaultSettings = (): Settings => ({ sessionLength: 25, sound: true, theme: "sistema" });
+export const defaultSettings = (): Settings => ({ sessionLength: 25, sound: true, haptics: true, theme: "sistema" });
 
 export const emptyProgress = (now = Date.now()): Progress => ({
   version: 2,
@@ -139,6 +141,7 @@ function cleanSettings(x: unknown): Settings {
   return {
     sessionLength: isNum(x.sessionLength) && x.sessionLength >= 5 && x.sessionLength <= 100 ? Math.round(x.sessionLength) : base.sessionLength,
     sound: typeof x.sound === "boolean" ? x.sound : base.sound,
+    haptics: typeof x.haptics === "boolean" ? x.haptics : base.haptics,
     theme: THEMES.includes(x.theme as Theme) ? (x.theme as Theme) : base.theme,
   };
 }

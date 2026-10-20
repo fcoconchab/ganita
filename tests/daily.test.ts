@@ -36,6 +36,9 @@ describe("sesión diaria con habilidades", () => {
       { key: "s:x11", ok: true, ms: 4000 },
     ]);
     expect(a["s:x11"]).toEqual({ ok: false, ms: 4000 });
+    // un reintento correcto no borra el error ni entra a la mediana
+    const b = aggregateSkills([{ key: "s:x11", ok: false, ms: 5000 }, { key: "s:x11", ok: true, ms: 800, retry: true }]);
+    expect(b["s:x11"]).toEqual({ ok: false, ms: 5000 });
     expect(a["f:7x8"]).toBeUndefined();
   });
 });

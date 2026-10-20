@@ -33,7 +33,7 @@ describe("exportar e importar", () => {
   it("ida y vuelta exacta", () => {
     const p = simulate(1, 300, T0);
     p.lessons.x11 = { completedAt: T0, bestBoss: 9 };
-    p.settings = { sessionLength: 40, sound: false, theme: "claro" };
+    p.settings = { sessionLength: 40, sound: false, haptics: false, theme: "claro" };
     p.meta.lastBackupAt = T0 + DAY;
     const r = parseBackup(toBackup(p, T0 + 2 * DAY));
     expect(r.ok).toBe(true);
@@ -124,7 +124,7 @@ describe("fusionar sin perder datos", () => {
   it("mantiene los ajustes de este teléfono", () => {
     const x = emptyProgress(T0), y = emptyProgress(T0);
     x.settings.theme = "oscuro";
-    y.settings = { sessionLength: 10, sound: false, theme: "claro" };
+    y.settings = { sessionLength: 10, sound: false, haptics: false, theme: "claro" };
     expect(mergeProgress(x, y).settings).toEqual(x.settings);
   });
   it("el registro fusionado respeta el máximo", () => {

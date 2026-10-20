@@ -43,6 +43,18 @@ export function gradeFor(ok: boolean, ms: number, targetMs: number): Grade {
 
 const clamp = (x: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, x));
 
+/**
+ * Reintento: la misma pregunta reaparece en la sesión después de un error,
+ * cuando ya viste la respuesta. Sirve para fijar, no para medir:
+ * - acierto → vuelve mañana (intervalo 1) y el próximo acierto ya salta a 3 o 4 días;
+ * - error → sigue vencido, sin castigar de nuevo la facilidad;
+ * - no entra al historial, así no infla el rango ni la mediana.
+ */
+export function relearn(state: ItemState, attempt: Attempt): ItemState {
+  if (!attempt.ok) return { ...state, due: attempt.at };
+  return { ...state, interval: 1, reps: Math.max(state.reps, 1), due: attempt.at + DAY };
+}
+
 /** Aplica un intento y devuelve el nuevo estado (no muta). */
 export function review(state: ItemState, attempt: Attempt, targetMs: number): ItemState {
   const g = gradeFor(attempt.ok, attempt.ms, targetMs);

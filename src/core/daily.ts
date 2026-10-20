@@ -40,10 +40,10 @@ export function buildDaily(p: Progress, lessons: SkillRef[], now: number, seed =
 }
 
 /** Una habilidad se califica una vez por sesión: ok si todos sus problemas salieron bien. */
-export function aggregateSkills(results: { key: string; ok: boolean; ms: number }[]) {
+export function aggregateSkills(results: { key: string; ok: boolean; ms: number; retry?: boolean }[]) {
   const by: Record<string, { ok: boolean; ms: number[] }> = {};
   for (const r of results) {
-    if (!r.key.startsWith("s:")) continue;
+    if (!r.key.startsWith("s:") || r.retry) continue; // los reintentos no califican
     by[r.key] ??= { ok: true, ms: [] };
     by[r.key].ok &&= r.ok;
     by[r.key].ms.push(r.ms);
