@@ -11,6 +11,27 @@ Registro de lo que se hizo, en qué chat y qué quedó pendiente. **Cada chat lo
 | 1a · Victorias rápidas | Pendiente (después de 0.5) | Chat "1a Victorias rápidas" |
 | Investigación | Pendiente | Chat "Investigación" |
 
+## Pendientes abiertos
+
+Lista única de lo que falta. Al cerrar algo, se tacha acá y se cuenta en la entrada del chat que lo hizo.
+
+**Para cerrar el hito 0.5 (Francisco, en el iPhone real)**
+- [ ] Pasar las correcciones de la prueba en iPhone, con capturas.
+- [ ] Validar la vibración (iOS 18 o más; confianza media, usa el interruptor nativo de Safari).
+- [ ] Validar el sonido de marimba con el interruptor de silencio apagado.
+- [ ] Respaldo: que Exportar abra la hoja de compartir y que Importar deje elegir el .json desde Archivos (en el computador solo se probó la descarga).
+- [ ] Usar la app 3 días sin bloqueos.
+
+**Riesgos a revisar con el uso**
+- [ ] Barra de estado en tema claro: la app usa `black-translucent`, que pinta la hora en blanco. Sobre el fondo claro podría no leerse. Confirmar con captura antes de cambiarlo (el cambio solo aplica al reinstalar la app en la pantalla de inicio).
+- [ ] Pausa después de un acierto (380 ms, 620 ms en celebración): si se siente lenta para ir rápido, bajarla.
+- [ ] "Días 0/14" en Tus tiempos cuenta días desde la primera respuesta: el primer día muestra 0. Evaluar si se entiende.
+
+**Para después (fuera del hito 0.5)**
+- [ ] Revisar los umbrales de 1,5 s y 3 s con 14 días y 300 respuestas (Ajustes, Tus tiempos, exportar la planilla).
+- [ ] Investigación: SM-2 actual o FSRS; puede reordenar los hitos 1c en adelante.
+- [ ] Hito 1a, Victorias rápidas: ×5, ×25, ×125, ×9, ×99, cuadrados terminados en 5.
+
 ## Entradas
 
 ### 2026-10-20 · Chat "0.5 Cimientos" (parte 2: el juego más bonito y el reintento)
@@ -35,7 +56,7 @@ Registro de lo que se hizo, en qué chat y qué quedó pendiente. **Cada chat lo
   - Correcciones menores: "1 repaso te espera" (antes "1 repasos"); en listas con scroll los hijos ya no se encogen (la fila de pestañas de nivel quedaba en 0 px).
 - **Verificado:** 61 tests (37 nuevos: migración, fusión idempotente y sin pérdida, cuantiles contra numpy, CSV), build sin errores. Prueba de punta a punta en tamaño iPhone 14 (oscuro y claro): migración de un progreso v1 real, sesión jugada con teclado, exportar → importar en un teléfono vacío (ítems, lecciones, registro y estadísticas idénticos), importar dos veces sin cambios, deshacer, archivo ajeno rechazado, lección completa registrando guiada/práctica/jefe. Cero errores de consola.
 - **Decisiones:** importar = fusionar (nunca reemplazar); tema por defecto = Sistema (lo que ya tenías); los ajustes no viajan en la importación; para calibrar cuentan solo primeros intentos de hechos; CSV con punto y coma y ms enteros para Excel en Chile.
-- **Pendiente:** correcciones de la prueba en iPhone (Francisco las pasa con capturas); probar en iPhone real la hoja de compartir al exportar y el selector de archivos al importar (confianza media: en el computador se probó la descarga); 3 días de uso para cerrar el hito. Observación para la investigación: un acierto justo después de un error (reintento) hoy sube el intervalo a 2 días; quizás debería quedar en 1.
+- **Pendiente:** correcciones de la prueba en iPhone (Francisco las pasa con capturas); probar en iPhone real la hoja de compartir al exportar y el selector de archivos al importar (confianza media: en el computador se probó la descarga); 3 días de uso para cerrar el hito. Observación sobre el reintento (que subía el intervalo a 2 días): resuelta en la parte 2.
 
 ### 2026-10-20 · Chat inicial (definición y Fase 0)
 - **Hecho:** atlas de 122 técnicas en 15 ramas; arquitectura; hoja de ruta; prompt de investigación; instrucciones del proyecto; repo `fcoconchab/ganita` con publicación automática en GitHub Pages; Fase 0 (Arsenal de 164 hechos en 4 niveles, diagnóstico, repaso espaciado calificado por tiempo, sesión diaria, mapa del Arsenal, lección ×11).
