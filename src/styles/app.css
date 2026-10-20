@@ -320,6 +320,16 @@ p { margin: 0; }
 .best { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 16px; border-radius: var(--radius); background: var(--bg-2); }
 .best .num { font-size: 22px; flex: 1; }
 
+/* en camino: se ve fluido pero tiene menos de 3 intentos (rayado = falta confirmar) */
+.cell.prov, .minimap i.prov, .prov-swatch {
+  background-image: repeating-linear-gradient(135deg, transparent 0 4px, color-mix(in srgb, var(--surface) 55%, transparent) 4px 7px);
+}
+.prov-swatch { background-color: var(--r-fluido); }
+.meter.two { display: flex; }
+.meter.two > i { border-radius: 0; }
+.meter.two > i:first-child { border-radius: 99px 0 0 99px; }
+.meter.two > i.prov { background: var(--r-fluido); opacity: .45; border-radius: 0 99px 99px 0; }
+
 /* ---------- ajustes ---------- */
 .subhead { display: flex; align-items: center; gap: 12px; padding: 14px 20px 0; }
 .title-m { font-size: 24px; line-height: 1.1; font-variation-settings: "opsz" 72; }

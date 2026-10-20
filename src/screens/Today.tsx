@@ -113,8 +113,8 @@ export function Today({ progress, now, onDiagnostic, onSession, onLesson, onSett
         <div className="arsenal-text">
           <span className="eyebrow">Arsenal, nivel {current.id}</span>
           <h3 className="card-title">{current.name}</h3>
-          <span className="small muted">{tp.good} de {tp.total} consolidados</span>
-          <div className="meter"><i style={{ width: `${tp.share * 100}%` }} /></div>
+          <span className="small muted">{tp.good} de {tp.total} consolidados{tp.provisional > 0 ? `, ${tp.provisional} en camino` : ""}</span>
+          <div className="meter two"><i style={{ width: `${tp.share * 100}%` }} /><i className="prov" style={{ width: `${tp.provShare * 100}%` }} /></div>
           <span className="small muted">
             {current.id === "A4" ? "Último nivel del Arsenal." : "Con el 80% se abre el nivel siguiente."}
           </span>

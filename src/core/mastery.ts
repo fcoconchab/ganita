@@ -37,6 +37,13 @@ export function rankOf(state: ItemState | undefined, fluidoMs = 3000, strict = f
   return state.interval >= 21 ? "maquina" : "automatico";
 }
 
+/**
+ * Provisorio: se ve Fluido pero tiene menos de 3 intentos, así que todavía no cuenta
+ * como consolidado. Hay que repetirlo para confirmarlo.
+ */
+export const isProvisional = (state: ItemState | undefined) =>
+  !!state && state.history.length > 0 && state.history.length < 3 && rankOf(state) === "fluido";
+
 export const atLeast = (r: Rank, min: Rank) => RANK_ORDER.indexOf(r) >= RANK_ORDER.indexOf(min);
 
 /** Un ítem vencido hace más de 2 días se muestra "apagado" en el mapa. */

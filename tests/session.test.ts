@@ -64,3 +64,20 @@ describe("almacenamiento", () => {
     expect(streak([d(0), d(3)], T0)).toBe(1); // dos días libres cortan
   });
 });
+
+describe("en camino (provisorio)", () => {
+  it("fluido con menos de 3 intentos no cuenta como consolidado, pero se informa", async () => {
+    const { isProvisional } = await import("../src/core/mastery");
+    const { tierProgress } = await import("../src/core/session");
+    const two = { ...newItem(T0), history: [1, 2].map(() => ({ ok: true, ms: 2000, at: T0 })) };
+    const slow = { ...newItem(T0), history: [{ ok: true, ms: 5000, at: T0 }] };
+    expect(isProvisional(two)).toBe(true);
+    expect(isProvisional(slow)).toBe(false); // lento: es aprendiz, no "en camino"
+    expect(isProvisional(fluent())).toBe(false); // 3 intentos: ya consolidado
+    const items: Items = { "f:2x2": two, "f:2x3": fluent(), "f:2x4": slow };
+    const tp = tierProgress(items, "A1");
+    expect(tp.good).toBe(1);
+    expect(tp.provisional).toBe(1);
+    expect(tp.total).toBe(36);
+  });
+});

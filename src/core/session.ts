@@ -1,6 +1,6 @@
 // Arma la sesión diaria. Ver docs/ARQUITECTURA.md §8.
 import { FACTS, TIERS, type Fact, type TierId, factsOfTier } from "./facts";
-import { atLeast, median, rankOf } from "./mastery";
+import { atLeast, isProvisional, median, rankOf } from "./mastery";
 import { overdueDays, type ItemState } from "./srs";
 
 export type Items = Record<string, ItemState>;
@@ -31,7 +31,8 @@ export function unlockedTiers(items: Items): TierId[] {
 export const tierProgress = (items: Items, tier: TierId) => {
   const facts = factsOfTier(tier);
   const good = facts.filter((f) => atLeast(rankOf(items[f.id], 3000, true), "fluido")).length;
-  return { good, total: facts.length, share: good / facts.length };
+  const provisional = facts.filter((f) => isProvisional(items[f.id])).length;
+  return { good, provisional, total: facts.length, share: good / facts.length, provShare: provisional / facts.length };
 };
 
 /** Generador pseudoaleatorio reproducible (para tests). */

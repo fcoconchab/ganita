@@ -35,6 +35,12 @@ Lista única de lo que falta. Al cerrar algo, se tacha acá y se cuenta en la en
 
 ## Entradas
 
+### 2026-10-20 · Chat "0.5 Cimientos" (parte 4: segunda tanda de capturas)
+- **Hecho:** "En camino": un hecho que se ve Fluido pero tiene menos de 3 intentos ahora se dibuja rayado en la grilla y en el mini mapa, con su entrada en la leyenda; la barra del nivel muestra lo consolidado y, más claro, lo en camino; Hoy y Arsenal dicen "6 de 36 consolidados, 21 en camino". Antes, la grilla casi toda verde con "0/36 consolidados" se veía contradictoria.
+- **Verificado:** 65 tests (nuevo: en camino no cuenta como consolidado y se informa aparte), build sin errores, capturas en 430 × 932 en claro.
+- **Decisiones:** no se cambió la regla (3 intentos para consolidar), solo se hizo visible.
+- **Pendiente:** las capturas de esta tanda (17:06 a 17:08) son anteriores al arreglo de pantalla completa (17:07); confirmar con una captura nueva que la barra de pestañas quedó pegada abajo.
+
 ### 2026-10-20 · Chat "0.5 Cimientos" (parte 3: primeras correcciones del iPhone)
 - **Hecho:**
   - La app no llenaba la pantalla instalada: quedaba una franja vacía bajo las pestañas. Ahora el contenedor se fija a los cuatro bordes (`position: fixed; inset: 0`).

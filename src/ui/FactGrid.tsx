@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import { FACT_BY_ID, type TierId } from "../core/facts";
-import { isFading, rankOf } from "../core/mastery";
+import { isFading, isProvisional, rankOf } from "../core/mastery";
 import type { Items } from "../core/session";
 
 const range = (a: number, b: number) => Array.from({ length: b - a + 1 }, (_, k) => a + k);
@@ -22,9 +22,9 @@ export function FactGrid({ tier, items, now, onPick }: Props) {
     return (
       <button
         key={key}
-        className={`cell r-${r}${isFading(st, now) ? " fade" : ""}`}
+        className={`cell r-${r}${isProvisional(st) ? " prov" : ""}${isFading(st, now) ? " fade" : ""}`}
         onClick={() => onPick?.(id)}
-        aria-label={`${f.a} por ${f.b}: ${r}`}
+        aria-label={`${f.a} por ${f.b}: ${r}${isProvisional(st) ? ", falta repetirlo" : ""}`}
       >
         {f.answer}
       </button>
@@ -83,7 +83,7 @@ export function MiniMap({ tier, items, now }: { tier: TierId; items: Items; now:
     <div className="minimap" style={{ gridTemplateColumns: `repeat(${cols.length}, 1fr)` }} aria-hidden="true">
       {rows.flatMap((r) => cols.map((c) => {
         const st = items[id(r, c)];
-        return <i key={`${r}-${c}`} className={`r-${rankOf(st)}${isFading(st, now) ? " fade" : ""}`} />;
+        return <i key={`${r}-${c}`} className={`r-${rankOf(st)}${isProvisional(st) ? " prov" : ""}${isFading(st, now) ? " fade" : ""}`} />;
       }))}
     </div>
   );

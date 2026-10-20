@@ -55,12 +55,16 @@ export function Arsenal({ progress, now, onPracticeTier, onDiagnostic }: Props) 
           <span className="small muted">{tp.good}/{tp.total} consolidados</span>
         </div>
         <p className="small muted">{t.description} Meta: bajo {String(t.targetMs / 1000).replace(".", ",")} s. Un hecho se consolida con 3 aciertos seguidos bajo 3 s.</p>
-        <div className="meter"><i style={{ width: `${tp.share * 100}%` }} /></div>
+        <div className="meter two"><i style={{ width: `${tp.share * 100}%` }} /><i className="prov" style={{ width: `${tp.provShare * 100}%` }} /></div>
+        {tp.provisional > 0 && (
+          <p className="small muted">{tp.provisional} {tp.provisional === 1 ? "va" : "van"} en camino: se ven fluidos, pero falta repetirlos para confirmarlos.</p>
+        )}
         <FactGrid tier={tier} items={progress.items} now={now} onPick={setPick} />
         <div className="legend">
           {(["nuevo", "aprendiz", "fluido", "automatico", "maquina"] as const).map((r) => (
             <span key={r}><i style={{ background: `var(--r-${r})` }} />{RANK_LABEL[r]}</span>
           ))}
+          <span><i className="prov-swatch" />En camino</span>
           <span><i style={{ background: "var(--r-fluido)", opacity: 0.38 }} />Se está olvidando</span>
         </div>
         {open ? (
