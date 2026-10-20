@@ -17,6 +17,12 @@ npm run build      # build de producción en dist/ (también corre tsc)
 
 Cada push a `main` publica en GitHub Pages con `.github/workflows/deploy.yml`.
 
+## Al empezar y al terminar cada chat
+
+1. **Al empezar:** lee `docs/ROADMAP.md` (hitos y definición de "listo") y `docs/PROGRESO.md` (qué se hizo y qué quedó pendiente). Haz `git pull` antes de tocar código.
+2. **Trabaja un solo hito por chat.** Si algo está fuera del hito, anótalo como pendiente en vez de hacerlo.
+3. **Al terminar:** `npm test` y `npm run build` sin errores; actualiza el estado en `docs/ROADMAP.md`; agrega una entrada arriba en `docs/PROGRESO.md` (hecho, verificado, decisiones, pendiente); commit y push a `main`; sube `ROADMAP.md` y `PROGRESO.md` a los documentos del proyecto en claude.ai (`claude/roadmap.md`, `claude/progreso.md`); actualiza la copia local en `Developer/proyectos-personales/ganita` con `git pull`.
+
 ## Reglas
 
 - `src/core/` es lógica pura: no importa React ni toca el DOM. Todo lo que está ahí tiene tests en `tests/`.

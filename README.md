@@ -18,6 +18,7 @@ El progreso se guarda en el teléfono.
 
 - [Arquitectura](docs/ARQUITECTURA.md): cómo está pensada la app, de lo pedagógico a lo técnico.
 - [Hoja de ruta](docs/ROADMAP.md): hitos, orden de construcción y definición de "listo".
+- [Bitácora](docs/PROGRESO.md): qué se hizo en cada chat y qué quedó pendiente.
 - [Atlas de técnicas](docs/atlas.html): las 122 técnicas en 15 ramas y 5 niveles.
 - [Prompt de investigación](docs/INVESTIGACION_PROMPT.md): para buscar técnicas que falten.
 - [Instrucciones del proyecto](docs/INSTRUCCIONES_PROYECTO.md): para pegar en el proyecto de Claude.
