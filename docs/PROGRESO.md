@@ -16,14 +16,15 @@ Registro de lo que se hizo, en qué chat y qué quedó pendiente. **Cada chat lo
 Lista única de lo que falta. Al cerrar algo, se tacha acá y se cuenta en la entrada del chat que lo hizo.
 
 **Para cerrar el hito 0.5 (Francisco, en el iPhone real)**
-- [ ] Pasar las correcciones de la prueba en iPhone, con capturas.
+- [ ] Pasar las correcciones de la prueba en iPhone, con capturas (primera tanda recibida el 20-10: franja vacía bajo las pestañas, corregida).
+- [ ] Confirmar que la app se actualiza sola al volver a ella y que la barra de pestañas queda pegada abajo.
 - [ ] Validar la vibración (iOS 18 o más; confianza media, usa el interruptor nativo de Safari).
 - [ ] Validar el sonido de marimba con el interruptor de silencio apagado.
 - [ ] Respaldo: que Exportar abra la hoja de compartir y que Importar deje elegir el .json desde Archivos (en el computador solo se probó la descarga).
 - [ ] Usar la app 3 días sin bloqueos.
 
 **Riesgos a revisar con el uso**
-- [ ] Barra de estado en tema claro: la app usa `black-translucent`, que pinta la hora en blanco. Sobre el fondo claro podría no leerse. Confirmar con captura antes de cambiarlo (el cambio solo aplica al reinstalar la app en la pantalla de inicio).
+- [x] Barra de estado en tema claro: en las capturas del iPhone la hora se ve oscura y legible. Cerrado.
 - [ ] Pausa después de un acierto (380 ms, 620 ms en celebración): si se siente lenta para ir rápido, bajarla.
 - [ ] "Días 0/14" en Tus tiempos cuenta días desde la primera respuesta: el primer día muestra 0. Evaluar si se entiende.
 
@@ -33,6 +34,14 @@ Lista única de lo que falta. Al cerrar algo, se tacha acá y se cuenta en la en
 - [ ] Hito 1a, Victorias rápidas: ×5, ×25, ×125, ×9, ×99, cuadrados terminados en 5.
 
 ## Entradas
+
+### 2026-10-20 · Chat "0.5 Cimientos" (parte 3: primeras correcciones del iPhone)
+- **Hecho:**
+  - La app no llenaba la pantalla instalada: quedaba una franja vacía bajo las pestañas. Ahora el contenedor se fija a los cuatro bordes (`position: fixed; inset: 0`).
+  - Actualización automática: las capturas mostraban la versión antigua porque la app instalada queda suspendida. Ahora, al volver a la app, busca versión nueva y se recarga una vez cuando llega. Caché del service worker a `ganita-v3`.
+- **Verificado:** 64 tests, build sin errores; en 430 × 932 (iPhone Pro Max) la barra de pestañas termina en el borde inferior; sin errores de consola.
+- **Decisiones:** la recarga automática puede cortar una sesión en curso si justo llega una versión nueva; no se pierde nada porque cada respuesta se guarda al instante.
+- **Pendiente:** confirmar en el iPhone (puede requerir cerrar la app desde el selector de apps una vez para tomar esta versión).
 
 ### 2026-10-20 · Chat "0.5 Cimientos" (parte 2: el juego más bonito y el reintento)
 - **Hecho:**

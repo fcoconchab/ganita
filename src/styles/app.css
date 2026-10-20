@@ -19,8 +19,10 @@ p { margin: 0; }
 .num { font-family: var(--display); font-variant-numeric: lining-nums tabular-nums; font-optical-sizing: auto; }
 
 /* ---------- shell ---------- */
+/* Fija a los cuatro bordes: en el iPhone instalado, height: 100% deja una franja vacía abajo. */
 .app {
-  height: 100%;
+  position: fixed;
+  inset: 0;
   display: flex;
   flex-direction: column;
   padding-top: env(safe-area-inset-top, 0px);
