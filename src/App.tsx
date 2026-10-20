@@ -6,7 +6,7 @@ import { buildDiagnostic, rng, type Items, type Question } from "./core/session"
 import { newItem, relearn, review } from "./core/srs";
 import { mergeProgress } from "./core/backup";
 import { appendLog, canUndo, clearUndo, dayKey, load, loadUndo, save, saveUndo, type Progress, type Settings as SettingsT } from "./core/storage";
-import { LESSONS } from "./content/lessons/x11";
+import { LESSONS } from "./content/lessons";
 import { Arsenal } from "./screens/Arsenal";
 import { Learn } from "./screens/Learn";
 import { LessonPlayer } from "./screens/LessonPlayer";

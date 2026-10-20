@@ -1,5 +1,6 @@
 import catalog from "../content/techniques.json";
-import { LESSONS } from "../content/lessons/x11";
+import { LESSONS } from "../content/lessons";
+import { PATH_LABEL } from "../content/lessons/types";
 import type { Progress } from "../core/storage";
 import { IconChevron, IconLock } from "../ui/icons";
 
@@ -13,9 +14,6 @@ const SOON: { icon: string; title: string; path: string }[] = [
   { icon: "≈", title: "Compensación: redondear y ajustar", path: "Núcleo" },
   { icon: "9̄", title: "Complemento: todos de 9, el último de 10", path: "Védico" },
   { icon: "→", title: "Multiplicar de izquierda a derecha", path: "Benjamin" },
-  { icon: "×5", title: "×5, ×25 y ×125", path: "Núcleo" },
-  { icon: "×9", title: "×9 y ×99", path: "Trachtenberg" },
-  { icon: "5²", title: "Cuadrados terminados en 5", path: "Védico" },
   { icon: "%", title: "Bloques de 10%, 5% y 1%", path: "Banquero" },
   { icon: "≡", title: "Base cercana (Nikhilam)", path: "Védico" },
   { icon: "a²", title: "Diferencia de cuadrados", path: "Védico" },
@@ -35,13 +33,14 @@ export function Learn({ progress, onLesson }: Props) {
       </div>
       {LESSONS.map((l) => {
         const done = progress.lessons[l.id];
+        const boss = l.steps.find((s) => s.type === "boss");
         return (
           <button key={l.id} className="card lesson-card" onClick={() => onLesson(l.id)}>
-            <span className="lesson-icon">×11</span>
+            <span className="lesson-icon">{l.icon}</span>
             <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <span className="eyebrow">Trachtenberg · {l.minutes} min</span>
+              <span className="eyebrow">{PATH_LABEL[l.path]} · {l.minutes} min</span>
               <b style={{ fontFamily: "var(--display)", fontSize: 19, fontWeight: 600 }}>{l.title}</b>
-              <span className="small muted">{done ? `Dominada · jefe ${done.bestBoss}/10` : l.subtitle}</span>
+              <span className="small muted">{done ? `Dominada · jefe ${done.bestBoss}/${boss && "count" in boss ? boss.count : 10}` : l.subtitle}</span>
             </span>
             {done ? <span className="pill good">Hecha</span> : <IconChevron />}
           </button>

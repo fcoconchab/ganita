@@ -4,6 +4,7 @@ export const x11Lesson: Lesson = {
   id: "x11",
   techniqueId: "mul.x11-y-x101",
   path: "trachtenberg",
+  icon: "×11",
   title: "Multiplicar por 11",
   subtitle: "Separa las cifras y suma al medio",
   minutes: 6,
@@ -32,7 +33,7 @@ export const x11Lesson: Lesson = {
       title: "Tu turno, con ayuda",
       body: "La guía muestra la suma del medio. Escribe el resultado completo.",
       count: 4,
-      carry: [false, false, true, true],
+      hard: [false, false, true, true],
     },
     {
       type: "practice",
@@ -50,5 +51,3 @@ export const x11Lesson: Lesson = {
     },
   ],
 };
-
-export const LESSONS: Lesson[] = [x11Lesson];

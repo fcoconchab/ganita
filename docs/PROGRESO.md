@@ -8,7 +8,7 @@ Registro de lo que se hizo, en qué chat y qué quedó pendiente. **Cada chat lo
 |---|---|---|
 | 0 · Fase 0 en tu iPhone | Publicado, falta validar en iPhone | Francisco |
 | 0.5 · Cimientos | Publicado; faltan correcciones de la prueba en iPhone y 3 días de uso | Chat "0.5 Cimientos" |
-| 1a · Victorias rápidas | Pendiente (después de 0.5) | Chat "1a Victorias rápidas" |
+| 1a · Victorias rápidas | Publicado (en paralelo con el 0.5, por decisión de Francisco); falta probar en iPhone y 3 días de uso | Chat "1a Victorias rápidas" |
 | Investigación | Pendiente | Chat "Investigación" |
 
 ## Pendientes abiertos
@@ -23,6 +23,12 @@ Lista única de lo que falta. Al cerrar algo, se tacha acá y se cuenta en la en
 - [ ] Respaldo: que Exportar abra la hoja de compartir y que Importar deje elegir el .json desde Archivos (en el computador solo se probó la descarga).
 - [ ] Usar la app 3 días sin bloqueos.
 
+**Para cerrar el hito 1a (Francisco, en el iPhone real)**
+- [ ] Hacer las 3 lecciones nuevas (×5/×25/×125, ×9/×99, cuadrados en 5) y pasar correcciones con capturas.
+- [ ] Revisar las animaciones del "por qué" en el iPhone (sobre todo el cuadrado que se reacomoda y la recta numérica).
+- [ ] Calibrar metas: 5 s (×5 y ×9), 4 s (cuadrados). Si el jefe sale muy fácil o muy difícil, ajustar.
+- [ ] Usar 3 días sin bloqueos.
+
 **Riesgos a revisar con el uso**
 - [x] Barra de estado en tema claro: en las capturas del iPhone la hora se ve oscura y legible. Cerrado.
 - [ ] Pausa después de un acierto (380 ms, 620 ms en celebración): si se siente lenta para ir rápido, bajarla.
@@ -31,9 +37,21 @@ Lista única de lo que falta. Al cerrar algo, se tacha acá y se cuenta en la en
 **Para después (fuera del hito 0.5)**
 - [ ] Revisar los umbrales de 1,5 s y 3 s con 14 días y 300 respuestas (Ajustes, Tus tiempos, exportar la planilla).
 - [ ] Investigación: SM-2 actual o FSRS; puede reordenar los hitos 1c en adelante.
-- [ ] Hito 1a, Victorias rápidas: ×5, ×25, ×125, ×9, ×99, cuadrados terminados en 5.
+- [x] Hito 1a, Victorias rápidas: construido y publicado (ver entrada del 20-10).
+- [ ] Hoy sugiere todas las técnicas no hechas, una tras otra; el riesgo "máximo 1 técnica nueva cada 2-3 días" no está forzado en la app. Evaluar con el uso.
+- [ ] ×999 (está en la técnica del catálogo) y ×125 con impares (tres mitades sobre 5 cifras): para más adelante.
 
 ## Entradas
+
+### 2026-10-20 · Chat "1a Victorias rápidas"
+- **Hecho:**
+  - Tres lecciones nuevas con los 6 pasos y el mismo motor de ×11: **×5, ×25 y ×125** (dividir por 2, 4 u 8 y agregar ceros; si no divide justo, ceros primero y mitades), **×9 y ×99** (73 × 99 = 72 | 27; ×9 = ×10 menos el número) y **cuadrados terminados en 5** (6 × 7 | 25, de 15² a 195²).
+  - Visuales animados del "por qué": el mismo 48 por 5, 25 y 125; barras de 10, 100 y 1.000 partidas en 2, 4 y 8; cadena de mitades; recta numérica de 7.300 a 7.227; ×9 y el cero de relleno en 94 | 05; el cuadrado de 65 cuyas franjas se juntan abajo en un rectángulo de 60 × 70 más la esquina de 25.
+  - Motor generalizado: cada generador entrega su ayuda de la guiada (antes estaba escrita para ×11 dentro de LessonPlayer); problemas con potencia (65² se muestra como 65²); problemas repetidos se comparan por par completo; `carry` pasó a `hard` (caso de la regla completa); lista de lecciones en `src/content/lessons/index.ts` con ícono y camino por lección; las 3 salen de "Próximamente".
+  - Mientras escribes, la respuesta ya muestra los miles con punto (1.876, no 1876). Las cuentas en los textos de las lecciones no se cortan entre líneas.
+- **Verificado:** 80 tests (16 nuevos). Cada paso de cada camino se recalcula en el test (igualdades, mitades, "pega"); todos los casos del rango de ×5/×25/×125, ×99 (12 a 99, con relleno 94 | 05) y cuadrados 15 a 195; un test lee los textos de las lecciones y recalcula cada igualdad escrita, más las afirmaciones en palabras; textos sin guiones largos y con miles con punto. Build sin errores. Las 3 lecciones jugadas de punta a punta en 390 × 844 (oscuro), con un error a propósito en la práctica: jefe 10/10, entran al repaso (`s:x5`, `s:x9`, `s:sq5`). Pasos 1 a 3 revisados también en claro. Cero errores de consola.
+- **Decisiones:** cuadrados de 3 cifras (105² a 195²) dentro de la lección, como regla completa; ×125 solo con pares; metas 5 s (×5, ×9) y 4 s (cuadrados), jefe 9 de 10 con 6 s, 5 s y 5 s. Se construyó con el 0.5 aún abierto, por decisión de Francisco.
+- **Pendiente:** probar en iPhone y 3 días de uso; ver "Para cerrar el hito 1a".
 
 ### 2026-10-20 · Chat "0.5 Cimientos" (parte 4: segunda tanda de capturas)
 - **Hecho:** "En camino": un hecho que se ve Fluido pero tiene menos de 3 intentos ahora se dibuja rayado en la grilla y en el mini mapa, con su entrada en la leyenda; la barra del nivel muestra lo consolidado y, más claro, lo en camino; Hoy y Arsenal dicen "6 de 36 consolidados, 21 en camino". Antes, la grilla casi toda verde con "0/36 consolidados" se veía contradictoria.

@@ -3,7 +3,7 @@ import { atLeast, rankOf } from "../core/mastery";
 import { tierProgress, unlockedTiers } from "../core/session";
 import { isDue } from "../core/srs";
 import { dayKey, streak, type Progress } from "../core/storage";
-import { LESSONS } from "../content/lessons/x11";
+import { LESSONS } from "../content/lessons";
 import { Beads, markOf, type Mark } from "../ui/Drill";
 import { MiniMap } from "../ui/FactGrid";
 import { IconChevron, IconSettings } from "../ui/icons";
@@ -131,7 +131,7 @@ export function Today({ progress, now, onDiagnostic, onSession, onLesson, onSett
 
       {nextLesson && (
         <button className="card lesson-card" onClick={() => onLesson(nextLesson.id)}>
-          <span className="lesson-icon">×11</span>
+          <span className="lesson-icon">{nextLesson.icon}</span>
           <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <span className="eyebrow">Nueva técnica, {nextLesson.minutes} min</span>
             <b className="card-title">{nextLesson.title}</b>

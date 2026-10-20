@@ -25,7 +25,7 @@ export function buildDaily(p: Progress, lessons: SkillRef[], now: number, seed =
   const skillQs: Question[] = skillsDue(p, lessons, now).flatMap((l) =>
     Array.from({ length: SKILL_PROBLEMS }, () => {
       const pr = GENERATORS[l.techniqueId](rand);
-      return { key: skillKey(l.id), a: pr.a, b: pr.b, answer: pr.answer, isNew: false, steps: pr.steps };
+      return { key: skillKey(l.id), a: pr.a, b: pr.b, answer: pr.answer, op: pr.op, isNew: false, steps: pr.steps };
     }),
   );
   const length = Math.max(10, p.settings.sessionLength - skillQs.length);

@@ -17,6 +17,9 @@ interface Props {
 
 type Phase = "intro" | "drill" | "result";
 
+/** Espacios duros alrededor de ×, ÷, −, +, = y | para que una cuenta no se corte entre líneas. */
+const keepTogether = (t: string) => t.replace(/ ([×÷−+=|]) /g, "\u00a0$1\u00a0");
+
 export function LessonPlayer({ lesson, onExit, onComplete, onAnswer }: Props) {
   const [idx, setIdx] = useState(0);
   const [phase, setPhase] = useState<Phase>("intro");
@@ -28,23 +31,24 @@ export function LessonPlayer({ lesson, onExit, onComplete, onAnswer }: Props) {
   const questions = useMemo<DrillQuestion[]>(() => {
     if (!("count" in step) || !gen) return [];
     const rand = rng(Date.now() + run * 7919);
-    const seen = new Set<number>();
+    const seen = new Set<string>();
     const out: DrillQuestion[] = [];
     for (let k = 0; out.length < step.count && k < 200; k++) {
-      const carry = step.type === "guided" ? step.carry?.[out.length] : undefined;
-      const p = gen(rand, carry === undefined ? {} : { carry });
-      if (seen.has(p.a)) continue;
-      seen.add(p.a);
-      const t = Math.floor(p.a / 10), u = p.a % 10;
+      const hard = step.type === "guided" ? step.hard?.[out.length] : undefined;
+      const p = gen(rand, hard === undefined ? {} : { hard });
+      const id = p.op === "²" ? `${p.a}²` : `${p.a}×${p.b}`;
+      if (seen.has(id)) continue;
+      seen.add(id);
       out.push({
-        key: `l:${lesson.id}:${p.a}`,
+        key: `l:${lesson.id}:${id}`,
         a: p.a,
         b: p.b,
+        op: p.op,
         answer: p.answer,
         steps: p.steps,
         stepsTitle: "El camino",
         scaffold: step.type === "guided"
-          ? <><b>{t}</b><span>·</span><span>{t} + {u} = {t + u}</span><span>·</span><b>{u}</b></>
+          ? <>{p.hint.map((h, j) => (typeof h === "string" ? <span key={j}>{h}</span> : <b key={j}>{h.hl}</b>))}</>
           : undefined,
       });
     }
@@ -124,7 +128,7 @@ export function LessonPlayer({ lesson, onExit, onComplete, onAnswer }: Props) {
         <span className="eyebrow">{lesson.title}</span>
         <h2 className="title-xl">{step.title}</h2>
         {Visual && <div className="visual"><Visual /></div>}
-        <p className="muted" style={{ fontSize: 17 }}>{step.body}</p>
+        <p className="muted" style={{ fontSize: 17 }}>{keepTogether(step.body)}</p>
         {step.type === "boss" && <p className="small muted">Meta: {step.pass} de {step.count}. El reloj corre, pero no hay límite.</p>}
       </div>
       <div className="lesson-foot">

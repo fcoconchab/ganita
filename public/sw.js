@@ -1,6 +1,6 @@
 // Service worker: guarda la app para usarla sin internet.
 // Estrategia: red primero para la página (para recibir versiones nuevas), caché primero para el resto.
-const CACHE = "ganita-v3";
+const CACHE = "ganita-v4";
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(["./", "./index.html", "./manifest.webmanifest", "./icon.svg"])));

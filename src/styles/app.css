@@ -230,6 +230,63 @@ p { margin: 0; }
 .cols .colhl { position: relative; }
 .cols .colhl::before { content: ""; position: absolute; inset: -4px 2px; border-radius: 10px; background: var(--accent-soft); z-index: -1; }
 
+/* ×5, ×25, ×125: filas del mismo 48 */
+.qrows { display: grid; grid-template-columns: auto auto auto; gap: 14px 18px; font-family: var(--display); font-size: 26px; align-items: baseline; }
+.qrow { display: contents; }
+.qrow .qmid { font-size: 19px; color: var(--accent); white-space: nowrap; }
+
+/* barras partidas */
+.bars { width: 100%; display: flex; flex-direction: column; gap: 14px; }
+.bar-row { display: flex; align-items: center; gap: 10px; }
+.bar { flex: 1; display: flex; gap: 3px; height: 38px; }
+.seg { flex: 1; display: grid; place-items: center; border-radius: 8px; background: var(--accent-soft); color: var(--accent); font-family: var(--display); font-size: 15px; font-weight: 600; min-width: 0; }
+.bar-tot { width: 74px; font-family: var(--display); font-size: 19px; text-align: right; white-space: nowrap; }
+.bar.k8 .seg { font-size: 12.5px; border-radius: 6px; }
+.bar-note { font-size: 14px; font-weight: 700; color: var(--ink-2); text-align: center; }
+
+/* cadena de mitades */
+.chain { display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: var(--display); }
+.chain-row { display: flex; align-items: baseline; gap: 10px; font-size: 36px; }
+.chain-row b { font-weight: 500; }
+.chain-row .note, .chain-step { font-family: var(--body); font-size: 13px; font-weight: 700; color: var(--ink-3); }
+.chain-step { color: var(--accent); }
+
+/* ×99: par de cifras */
+.pair { display: flex; align-items: flex-start; gap: 14px; font-family: var(--display); }
+.pair-cell { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.pair-cell b { font-size: 56px; font-weight: 500; line-height: 1; }
+.pair-cell small { font-family: var(--body); font-size: 13px; font-weight: 700; color: var(--ink-3); }
+.pair-bar { font-size: 48px; color: var(--ink-3); line-height: 1; }
+
+/* recta numérica */
+.nline { width: 100%; max-width: 340px; overflow: visible; }
+.nline .axis { stroke: var(--ink-3); stroke-width: 2; }
+.nline .tick { stroke: var(--ink-2); stroke-width: 2; }
+.nline .seg27 { stroke: var(--accent); stroke-width: 6; stroke-linecap: round; }
+.nline .jump { fill: none; stroke: var(--ink-2); stroke-width: 2; stroke-linecap: round; }
+.nline .dot { fill: var(--ink-2); }
+.nline .dot.good { fill: var(--good); }
+.lbl { fill: var(--ink-2); font-family: var(--display); font-size: 16px; font-variant-numeric: tabular-nums; }
+.lbl.strong { fill: var(--ink); font-weight: 600; }
+.lbl.acc { fill: var(--accent); font-weight: 600; }
+.lbl.good { fill: var(--good); font-weight: 600; }
+.lbl.big { fill: var(--ink); font-size: 22px; }
+
+/* ×9: dos mini cuentas */
+.mini { display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: var(--display); }
+.mini-line { font-size: 34px; }
+.sep { width: 60%; height: 1px; background: var(--line); }
+
+/* cuadrado que se reacomoda */
+.area { width: 100%; max-width: 290px; overflow: visible; }
+.area .sq { fill: var(--surface-2); stroke: var(--ink-3); stroke-width: 1.5; }
+.area .strip { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.area .corner { fill: var(--good-soft); stroke: var(--good); stroke-width: 1.5; }
+.area .outline { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 6 5; }
+
+/* problema con potencia (65²) */
+.problem .pow { font-size: .5em; align-self: flex-start; margin-left: -.4em; margin-top: .02em; color: var(--ink-2); }
+
 .scaffold { font-family: var(--display); font-size: 22px; color: var(--ink-2); display: flex; gap: 10px; align-items: center; }
 .scaffold b { color: var(--accent); font-weight: 600; }
 

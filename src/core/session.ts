@@ -11,6 +11,7 @@ export interface Question {
   b: number;
   answer: number;
   isNew: boolean;
+  op?: "×" | "²"; // habilidades: "²" se muestra como cuadrado
   steps?: string[]; // camino de la técnica (habilidades)
 }
 

@@ -11,6 +11,8 @@ export interface DrillQuestion {
   a: number;
   b: number;
   answer: number;
+  /** "²" muestra a² en vez de a × b */
+  op?: "×" | "²";
   isNew?: boolean;
   /** pasos de la técnica, se muestran al fallar */
   steps?: string[];
@@ -161,7 +163,8 @@ export function Drill({ questions, mode, onAnswer, onFinish, onExit, fastMs = 15
   const onSkip = useCallback(() => { if (statusRef.current === "ask") settle(false, true); }, [settle]);
 
   if (!q) return null;
-  const shown = status === "bad" ? input || "?" : input;
+  const typed = input.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // miles con punto mientras escribes
+  const shown = status === "bad" ? typed || "?" : typed;
   const showSteps = status === "bad" && q.steps && !quiet;
   const fast = status === "ok" && lastMs <= fastMs;
   const answerClass = status === "ok" ? (fast ? "ok fast" : "ok") : status === "bad" ? "bad" : "";
@@ -186,7 +189,9 @@ export function Drill({ questions, mode, onAnswer, onFinish, onExit, fastMs = 15
 
         {q.scaffold && status === "ask" && <div className="scaffold">{q.scaffold}</div>}
         <div key={`p${i}`} className="problem num enter" aria-live="polite">
-          <span>{fmt(q.a)}</span><span className="op">×</span><span>{fmt(q.b)}</span>
+          {q.op === "²"
+            ? <><span>{fmt(q.a)}</span><sup className="pow">2</sup></>
+            : <><span>{fmt(q.a)}</span><span className="op">×</span><span>{fmt(q.b)}</span></>}
         </div>
         <div className={`answer num ${answerClass}`}>
           {status === "ok" ? fmt(q.answer) : shown}
