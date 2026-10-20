@@ -1,0 +1,58 @@
+/* Ganita · tokens de diseño
+   Dirección: tinta azul profunda (noche de estudio), números en Fraunces,
+   un acento azafrán para lo importante y un verde salvia para el dominio. */
+:root {
+  /* oscuro por defecto */
+  --bg: #0d1420;
+  --bg-2: #121b2a;
+  --surface: #172234;
+  --surface-2: #1e2b40;
+  --line: #26344b;
+  --ink: #eef1f6;
+  --ink-2: #a9b4c6;
+  --ink-3: #6d7a90;
+  --accent: #f0a83a;       /* azafrán */
+  --accent-ink: #1a1206;
+  --accent-soft: rgba(240, 168, 58, 0.14);
+  --good: #6fcf97;         /* acierto */
+  --good-soft: rgba(111, 207, 151, 0.14);
+  --bad: #ef7a6b;          /* error */
+  --bad-soft: rgba(239, 122, 107, 0.14);
+
+  /* rangos de dominio */
+  --r-nuevo: #233047;
+  --r-aprendiz: #7a5a26;
+  --r-fluido: #3f7a5f;
+  --r-automatico: #4fb383;
+  --r-maquina: #f0a83a;
+
+  --display: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
+  --body: "Manrope Variable", -apple-system, "SF Pro Text", system-ui, sans-serif;
+
+  --radius: 18px;
+  --radius-s: 12px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f3f4f7; --bg-2: #e9ecf1; --surface: #ffffff; --surface-2: #f6f7fa; --line: #dde1e8;
+    --ink: #172033; --ink-2: #4e5a6e; --ink-3: #8a93a3;
+    --accent: #c9781a; --accent-ink: #ffffff; --accent-soft: rgba(201, 120, 26, 0.12);
+    --good: #2f8f5b; --good-soft: rgba(47, 143, 91, 0.12); --bad: #c8503f; --bad-soft: rgba(200, 80, 63, 0.12);
+    --r-nuevo: #e4e7ed; --r-aprendiz: #e9c48a; --r-fluido: #9fd1b4; --r-automatico: #4fa679; --r-maquina: #c9781a;
+    --shadow: 0 10px 30px rgba(40, 30, 10, 0.12);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f3f4f7; --bg-2: #e9ecf1; --surface: #ffffff; --surface-2: #f6f7fa; --line: #dde1e8;
+  --ink: #172033; --ink-2: #4e5a6e; --ink-3: #8a93a3;
+  --accent: #c9781a; --accent-ink: #ffffff; --accent-soft: rgba(201, 120, 26, 0.12);
+  --good: #2f8f5b; --good-soft: rgba(47, 143, 91, 0.12); --bad: #c8503f; --bad-soft: rgba(200, 80, 63, 0.12);
+  --r-nuevo: #e4e7ed; --r-aprendiz: #e9c48a; --r-fluido: #9fd1b4; --r-automatico: #4fa679; --r-maquina: #c9781a;
+  --shadow: 0 10px 30px rgba(40, 30, 10, 0.12);
+  color-scheme: light;
+}

@@ -1,0 +1,1715 @@
+{
+ "version": 2,
+ "branches": [
+  {
+   "code": "FUN",
+   "name": "Fundamentos",
+   "description": "Hechos que se memorizan. Son la base de todo lo demás: cada hecho memorizado es un cálculo que no tienes que hacer."
+  },
+  {
+   "code": "MEM",
+   "name": "Memoria y representación",
+   "description": "Cómo guardar números mientras calculas. El verdadero límite de un calculador humano."
+  },
+  {
+   "code": "MAG",
+   "name": "Magnitudes y números grandes",
+   "description": "Millones, miles de millones y puntos base: separar la cuenta de los ceros para no equivocarse de escala."
+  },
+  {
+   "code": "SUM",
+   "name": "Suma y resta",
+   "description": "Ordenar, redondear y complementar para no tener que llevar."
+  },
+  {
+   "code": "MUL",
+   "name": "Multiplicación",
+   "description": "La rama con más atajos: identidades algebraicas, bases y métodos generales."
+  },
+  {
+   "code": "POT",
+   "name": "Cuadrados y potencias",
+   "description": "Casos especiales de multiplicación que aparecen todo el tiempo."
+  },
+  {
+   "code": "DIV",
+   "name": "División y fracciones",
+   "description": "Convertir la división en multiplicación, factores o decimales conocidos."
+  },
+  {
+   "code": "RAI",
+   "name": "Raíces",
+   "description": "Exactas (por últimos dígitos y rangos) y aproximadas (linealización, Newton)."
+  },
+  {
+   "code": "LOG",
+   "name": "Logaritmos y exponenciales",
+   "description": "Pocos valores memorizados permiten potencias, raíces y tasas continuas."
+  },
+  {
+   "code": "CAL",
+   "name": "Calendario",
+   "description": "Día de la semana de cualquier fecha: aritmética módulo 7."
+  },
+  {
+   "code": "EST",
+   "name": "Estimación",
+   "description": "Llegar a la magnitud correcta en segundos cuando la precisión no importa."
+  },
+  {
+   "code": "VER",
+   "name": "Verificación",
+   "description": "Detectar errores sin rehacer el cálculo."
+  },
+  {
+   "code": "FIN",
+   "name": "Finanzas y negocio",
+   "description": "Las técnicas anteriores aplicadas a %, crecimiento, tasas y valoración."
+  },
+  {
+   "code": "CHI",
+   "name": "Chile: UF, IVA y pesos",
+   "description": "Las conversiones de todos los días en Chile. Los valores de UF y dólar cambian: la app cargará los del día."
+  },
+  {
+   "code": "PRU",
+   "name": "Pruebas: PAES, GMAT, GRE",
+   "description": "Atajos para pruebas de selección múltiple sin calculadora."
+  }
+ ],
+ "techniques": [
+  {
+   "id": "fun.tablas-del-1-al-9",
+   "branch": "FUN",
+   "level": 1,
+   "name": "Tablas del 1 al 9",
+   "summary": "Prerrequisito absoluto: respuesta instantánea, sin contar.",
+   "example": "7×8 = 56   9×6 = 54",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "fun.tablas-del-11-al-19",
+   "branch": "FUN",
+   "level": 2,
+   "name": "Tablas del 11 al 19",
+   "summary": "Acelera la multiplicación cruzada y los casos de 2 dígitos.",
+   "example": "13×17 = 221   14×16 = 224",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "fun.complementos-a-10-y-a-100",
+   "branch": "FUN",
+   "level": 1,
+   "name": "Complementos a 10 y a 100",
+   "summary": "Saber al instante cuánto falta para la decena o la centena.",
+   "example": "100 − 37 = 63   10 − 7 = 3",
+   "schools": [
+    "Védicas",
+    "Soroban"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "fun.cuadrados-del-1-al-32",
+   "branch": "FUN",
+   "level": 2,
+   "name": "Cuadrados del 1 al 32",
+   "summary": "Base para raíces, diferencia de cuadrados y estimaciones.",
+   "example": "23² = 529   31² = 961",
+   "schools": [
+    "Benjamin"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "fun.cubos-del-1-al-10-y-sus-terminaciones",
+   "branch": "FUN",
+   "level": 3,
+   "name": "Cubos del 1 al 10 y sus terminaciones",
+   "summary": "Las terminaciones de los cubos son únicas: permiten raíces cúbicas exactas.",
+   "example": "7³ = 343   2↔8, 3↔7 (el resto termina igual)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "fun.reciprocos-1-2-a-1-20",
+   "branch": "FUN",
+   "level": 3,
+   "name": "Recíprocos 1/2 a 1/20",
+   "summary": "Convierte divisiones en multiplicaciones y fracciones en %.",
+   "example": "1/7 = 0,142857   1/16 = 0,0625   1/12 = 0,0833",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "fun.potencias-de-2-hasta-2",
+   "branch": "FUN",
+   "level": 3,
+   "name": "Potencias de 2 hasta 2²⁰",
+   "summary": "Útiles en estimación, informática y crecimiento.",
+   "example": "2¹⁰ = 1024 ≈ 10³   2¹⁶ = 65536",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "fun.primos-y-factorizaciones-enganosas",
+   "branch": "FUN",
+   "level": 3,
+   "name": "Primos y factorizaciones engañosas",
+   "summary": "Saber qué números parecen primos y no lo son.",
+   "example": "91 = 7×13   143 = 11×13   221 = 13×17   323 = 17×19",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "fun.logaritmos-de-2-3-y-7",
+   "branch": "FUN",
+   "level": 4,
+   "name": "Logaritmos de 2, 3 y 7",
+   "summary": "Con tres valores se construyen los logaritmos de casi todo lo demás.",
+   "example": "log 2 = 0,3010   log 3 = 0,4771   log 7 = 0,8451",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "mem.decir-los-parciales-en-voz-alta",
+   "branch": "MEM",
+   "level": 1,
+   "name": "Decir los parciales en voz alta",
+   "summary": "El circuito fonológico guarda el número mientras calculas lo siguiente.",
+   "example": "64×42: \"dos mil quinientos sesenta… más ciento veintiocho\" → 2688",
+   "schools": [
+    "Benjamin",
+    "Abhishek"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "mem.bloques-de-3-digitos",
+   "branch": "MEM",
+   "level": 2,
+   "name": "Bloques de 3 dígitos",
+   "summary": "Retener 482 916 como dos números, no seis dígitos.",
+   "example": "482 916 → \"cuatrocientos ochenta y dos / novecientos dieciséis\"",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "mem.notacion-rapida-de-ceros",
+   "branch": "MEM",
+   "level": 2,
+   "name": "Notación rápida de ceros",
+   "summary": "Anotar ceros finales como letras para sumar o restar potencias de 10.",
+   "example": "10 000 000 ÷ 5000 = 10KK ÷ 5K = 2K = 2000",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "mem.codigo-fonetico-major-system",
+   "branch": "MEM",
+   "level": 4,
+   "name": "Código fonético (Major System)",
+   "summary": "Cada dígito es una consonante: un parcial se guarda como palabra. Así se hacen cuadrados de 4 y 5 dígitos.",
+   "example": "Variante en español: 1=t/d 2=n 3=m 4=r 5=l 6=ch/ll 7=k/q 8=f/j 9=p/b 0=s/z\n32 = MaNo   52 = LuNa   74 = CaRo",
+   "schools": [
+    "Benjamin",
+    "Nugmanov"
+   ],
+   "kind": "Memoria",
+   "show": false,
+   "note": "Nugmanov usa otro código, por parecido visual (1=L, 2=N, 4=P…). No son compatibles: elige uno."
+  },
+  {
+   "id": "mem.chisanbop-abaco-de-dedos",
+   "branch": "MEM",
+   "level": 2,
+   "name": "Chisanbop (ábaco de dedos)",
+   "summary": "Dedos derechos valen 1 y el pulgar 5; dedos izquierdos 10 y el pulgar 50. Cuenta hasta 99.",
+   "example": "37 = 3 dedos izquierdos + pulgar derecho + 2 dedos derechos",
+   "schools": [
+    "Chisanbop"
+   ],
+   "kind": "Representación",
+   "show": false
+  },
+  {
+   "id": "mem.soroban-y-anzan-abaco-mental",
+   "branch": "MEM",
+   "level": 4,
+   "name": "Soroban y Anzan (ábaco mental)",
+   "summary": "Calcular con un ábaco japonés y luego visualizarlo. El soroban es, en el fondo, complementos a 5 y a 10.",
+   "example": "7 + 8 en el ábaco: sumar una decena y quitar 2 cuentas (8 = 10 − 2) → 15",
+   "schools": [
+    "Soroban"
+   ],
+   "kind": "Representación",
+   "show": false
+  },
+  {
+   "id": "mem.flash-anzan",
+   "branch": "MEM",
+   "level": 5,
+   "name": "Flash Anzan",
+   "summary": "Sumar números que aparecen en pantalla a gran velocidad usando el ábaco mental.",
+   "example": "Récord: 15 números de 3 dígitos en 1,61 s",
+   "schools": [
+    "Soroban"
+   ],
+   "kind": "Representación",
+   "show": true
+  },
+  {
+   "id": "sum.izquierda-a-derecha",
+   "branch": "SUM",
+   "level": 1,
+   "name": "Izquierda a derecha",
+   "summary": "Empezar por la cifra más grande mantiene la magnitud y permite decir el resultado mientras calculas.",
+   "example": "564 + 283 → 764 → 844 → 847",
+   "schools": [
+    "Benjamin",
+    "Nugmanov",
+    "Abhishek",
+    "Védicas"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "sum.agrupar-decenas-redondas",
+   "branch": "SUM",
+   "level": 1,
+   "name": "Agrupar decenas redondas",
+   "summary": "Reordenar para que los pares sumen 10, 100 o 1000.",
+   "example": "37 + 18 + 63 + 82 = (37+63) + (18+82) = 200",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "sum.compensacion",
+   "branch": "SUM",
+   "level": 2,
+   "name": "Compensación",
+   "summary": "Redondear un sumando a la decena o centena y ajustar al final. Úsala solo si evita llevar.",
+   "example": "543 + 386 = 543 + 400 − 14 = 929\n783 − 309 = 783 − 300 − 9 = 474",
+   "schools": [
+    "Nugmanov",
+    "Abhishek",
+    "Benjamin"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "sum.complemento-todos-de-9-el-ultimo-de-10",
+   "branch": "SUM",
+   "level": 2,
+   "name": "Complemento: todos de 9, el último de 10",
+   "summary": "Restar de una potencia de 10 sin pedir prestado.",
+   "example": "1000 − 384 → 9−3 | 9−8 | 10−4 = 616",
+   "schools": [
+    "Védicas",
+    "Nugmanov",
+    "Abhishek"
+   ],
+   "kind": "Exacta",
+   "show": false,
+   "note": "Si el número termina en 0, aplica \"el último de 10\" a la última cifra distinta de cero: 1000 − 470 = 530."
+  },
+  {
+   "id": "sum.contar-hacia-arriba",
+   "branch": "SUM",
+   "level": 2,
+   "name": "Contar hacia arriba",
+   "summary": "Restar como lo hace un cajero: cuánto falta desde el número chico hasta el grande.",
+   "example": "832 − 467: 467→500 (33) → 832 (332) → 365",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "sum.base-de-referencia-para-listas",
+   "branch": "SUM",
+   "level": 3,
+   "name": "Base de referencia para listas",
+   "summary": "Sumar muchos números parecidos como n × base más las desviaciones.",
+   "example": "48+52+47+53+50 = 5×50 + (−2+2−3+3+0) = 250",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "sum.suma-por-columnas-con-anticipacion",
+   "branch": "SUM",
+   "level": 5,
+   "name": "Suma por columnas con anticipación",
+   "summary": "Para 10 números de 10 dígitos: sumar cada columna de izquierda a derecha mirando el acarreo que viene de la siguiente.",
+   "example": "Disciplina oficial del Mental Calculation World Cup",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.x5-x25-x125",
+   "branch": "MUL",
+   "level": 2,
+   "name": "×5, ×25, ×125",
+   "summary": "Multiplicar por 10/2, 100/4 o 1000/8.",
+   "example": "816 × 25 = 816 ÷ 4 × 100 = 20400\n56 × 125 = 56 ÷ 8 × 1000 = 7000",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.x11-y-x101",
+   "branch": "MUL",
+   "level": 2,
+   "name": "×11 y ×101",
+   "summary": "×11: sumar cada cifra con su vecina. ×101: repetir el número de 2 cifras.",
+   "example": "8351 × 11 = 8|8+3|3+5|5+1|1 = 91861\n47 × 101 = 4747",
+   "schools": [
+    "Trachtenberg",
+    "Nugmanov",
+    "Abhishek"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "mul.x9-x99-x999",
+   "branch": "MUL",
+   "level": 2,
+   "name": "×9, ×99, ×999",
+   "summary": "Multiplicar por 10, 100 o 1000 y restar el número.",
+   "example": "4817 × 9 = 48170 − 4817 = 43353\n73 × 99 = 7300 − 73 = 7227",
+   "schools": [
+    "Trachtenberg",
+    "Nugmanov"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.distributiva-de-izquierda-a-derecha",
+   "branch": "MUL",
+   "level": 2,
+   "name": "Distributiva de izquierda a derecha",
+   "summary": "El método general: descomponer un factor en decenas y unidades y sumar los productos.",
+   "example": "64 × 42 = 64×40 + 64×2 = 2560 + 128 = 2688",
+   "schools": [
+    "Benjamin",
+    "Nugmanov",
+    "Abhishek"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.compensacion-metodo-de-resta",
+   "branch": "MUL",
+   "level": 2,
+   "name": "Compensación (método de resta)",
+   "summary": "Si un factor termina en 7, 8 o 9, redondear hacia arriba y restar.",
+   "example": "37 × 89 = 37×90 − 37 = 3330 − 37 = 3293",
+   "schools": [
+    "Benjamin",
+    "Nugmanov",
+    "Abhishek"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.factorizacion",
+   "branch": "MUL",
+   "level": 2,
+   "name": "Factorización",
+   "summary": "Partir un factor en números de una cifra y multiplicar en cadena.",
+   "example": "48 × 35 = 48 × 5 × 7 = 240 × 7 = 1680",
+   "schools": [
+    "Benjamin",
+    "Nugmanov",
+    "Abhishek"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.doblar-y-dividir",
+   "branch": "MUL",
+   "level": 2,
+   "name": "Doblar y dividir",
+   "summary": "Dividir un factor por 2 y doblar el otro hasta llegar a números fáciles.",
+   "example": "16 × 25 = 8×50 = 4×100 = 400\n35 × 14 = 70 × 7 = 490",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.diferencia-de-cuadrados",
+   "branch": "MUL",
+   "level": 3,
+   "name": "Diferencia de cuadrados",
+   "summary": "Dos números equidistantes de un centro fácil: (a−b)(a+b) = a² − b².",
+   "example": "42 × 38 = 40² − 2² = 1596\n67 × 73 = 70² − 3² = 4891",
+   "schools": [
+    "Védicas",
+    "Benjamin"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.base-cercana-nikhilam",
+   "branch": "MUL",
+   "level": 3,
+   "name": "Base cercana (Nikhilam)",
+   "summary": "Números cerca de 100 o 1000: izquierda = número + diferencia del otro; derecha = producto de las diferencias.",
+   "example": "96 × 97 → 96−3 | (−4)(−3) = 93|12 = 9312\n104 × 107 → 111|28 = 11128",
+   "schools": [
+    "Védicas",
+    "Handley"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.base-de-referencia-50-200-30",
+   "branch": "MUL",
+   "level": 3,
+   "name": "Base de referencia (50, 200, 30…)",
+   "summary": "Generaliza la base cercana a cualquier número redondo: (a + d₂) × base + d₁d₂.",
+   "example": "48 × 47, base 50: (48−3) × 50 + (−2)(−3) = 2250 + 6 = 2256",
+   "schools": [
+    "Handley",
+    "Védicas"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.decenas-iguales-unidades-que-suman-10",
+   "branch": "MUL",
+   "level": 3,
+   "name": "Decenas iguales, unidades que suman 10",
+   "summary": "Decena × (decena+1) y pegar el producto de las unidades.",
+   "example": "43 × 47 → 4×5 | 3×7 = 20|21 = 2021",
+   "schools": [
+    "Védicas"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.decenas-iguales-caso-general",
+   "branch": "MUL",
+   "level": 3,
+   "name": "Decenas iguales (caso general)",
+   "summary": "Sumar a un número las unidades del otro, multiplicar por la decena y sumar el producto de las unidades.",
+   "example": "61 × 68 = (61+8) × 60 + 1×8 = 4140 + 8 = 4148",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.multiplicacion-cruzada-urdhva-tiryagbhyam",
+   "branch": "MUL",
+   "level": 3,
+   "name": "Multiplicación cruzada (Urdhva Tiryagbhyam)",
+   "summary": "Columna por columna: extremos, cruces, extremos. Escala a cualquier tamaño y es la base del 8×8 de competencia.",
+   "example": "63 × 86 → 6×8 | 6×6+3×8 | 3×6 = 48|60|18 → 5418",
+   "schools": [
+    "Védicas",
+    "Nugmanov",
+    "Abhishek"
+   ],
+   "kind": "Exacta",
+   "show": false,
+   "note": "Abhishek la enseña dos veces con otro nombre: \"Bridge\" y \"Vitruvian Man\"."
+  },
+  {
+   "id": "mul.reglas-por-digito-de-trachtenberg",
+   "branch": "MUL",
+   "level": 4,
+   "name": "Reglas por dígito de Trachtenberg",
+   "summary": "Una regla mecánica para cada multiplicador (×6, ×7, ×12…). ×12: doblar cada cifra y sumar la vecina.",
+   "example": "413 × 12 = 4956",
+   "schools": [
+    "Trachtenberg"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.metodo-general-ut-unidades-decenas",
+   "branch": "MUL",
+   "level": 4,
+   "name": "Método general UT (unidades + decenas)",
+   "summary": "Cada cifra del resultado es U de un producto parcial + T del siguiente. Multiplica números largos sin tablas grandes.",
+   "example": "4312 × 42 = 181104",
+   "schools": [
+    "Trachtenberg",
+    "Abhishek"
+   ],
+   "kind": "Exacta",
+   "show": false,
+   "note": "Abhishek lo presenta como propio; es de Trachtenberg."
+  },
+  {
+   "id": "mul.3-x-3-digitos-con-parciales-guardados",
+   "branch": "MUL",
+   "level": 4,
+   "name": "3 × 3 dígitos con parciales guardados",
+   "summary": "Distributiva en dos bloques, guardando el primer parcial (en voz alta o con código fonético).",
+   "example": "847 × 326 = 800×326 + 47×326 = 260800 + 15322 = 276122",
+   "schools": [
+    "Benjamin"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "mul.8-x-8-digitos",
+   "branch": "MUL",
+   "level": 5,
+   "name": "8 × 8 dígitos",
+   "summary": "Multiplicación cruzada por columnas con memoria de trabajo entrenada. Se anota el resultado, no los pasos.",
+   "example": "Disciplina oficial del Mental Calculation World Cup",
+   "schools": [
+    "Védicas"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "pot.cuadrados-terminados-en-5",
+   "branch": "POT",
+   "level": 2,
+   "name": "Cuadrados terminados en 5",
+   "summary": "Decena × (decena+1) y agregar 25.",
+   "example": "65² → 6×7 | 25 = 4225",
+   "schools": [
+    "Védicas",
+    "Benjamin",
+    "Abhishek"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "pot.arriba-abajo-n-d-n-d-d",
+   "branch": "POT",
+   "level": 3,
+   "name": "Arriba-abajo: (n+d)(n−d) + d²",
+   "summary": "Subir a la decena más cercana, bajar lo mismo, multiplicar y sumar d². El método general para 2 dígitos.",
+   "example": "48² = 50 × 46 + 2² = 2304\n87² = 90 × 84 + 3² = 7569",
+   "schools": [
+    "Benjamin",
+    "Abhishek"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "pot.cuadrados-cerca-de-50",
+   "branch": "POT",
+   "level": 3,
+   "name": "Cuadrados cerca de 50",
+   "summary": "(25 ± d) | d², con d² en dos cifras.",
+   "example": "53² → 25+3 | 09 = 2809\n47² → 25−3 | 09 = 2209",
+   "schools": [
+    "Védicas"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "pot.cuadrados-cerca-de-100",
+   "branch": "POT",
+   "level": 3,
+   "name": "Cuadrados cerca de 100",
+   "summary": "(n ± d) | d².",
+   "example": "97² → 94|09 = 9409\n106² → 112|36 = 11236",
+   "schools": [
+    "Védicas"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "pot.cuadrados-de-3-y-4-digitos",
+   "branch": "POT",
+   "level": 4,
+   "name": "Cuadrados de 3 y 4 dígitos",
+   "summary": "Arriba-abajo a la centena, guardando el parcial.",
+   "example": "314² = 300 × 328 + 14² = 98400 + 196 = 98596",
+   "schools": [
+    "Benjamin"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "pot.duplex-dwandwa-yoga",
+   "branch": "POT",
+   "level": 4,
+   "name": "Dúplex (Dwandwa Yoga)",
+   "summary": "Cuadrado de cualquier largo, columna por columna: a², 2ab, 2ac+b²…",
+   "example": "341²: 9 | 24 | 22 | 8 | 1 → con acarreos = 116281",
+   "schools": [
+    "Védicas"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "pot.cubos-por-binomio",
+   "branch": "POT",
+   "level": 4,
+   "name": "Cubos por binomio",
+   "summary": "(a+b)³ = a³ + 3a²b + 3ab² + b³ con a redondo.",
+   "example": "21³ = 8000 + 1200 + 60 + 1 = 9261",
+   "schools": [
+    "Védicas",
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "div.division-corta-de-izquierda-a-derecha",
+   "branch": "DIV",
+   "level": 1,
+   "name": "División corta de izquierda a derecha",
+   "summary": "Dividir cifra por cifra arrastrando el resto.",
+   "example": "1794 ÷ 6 → 17÷6 = 2 r5 → 59÷6 = 9 r5 → 54÷6 = 9 → 299",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "div.por-factores-y-cancelando",
+   "branch": "DIV",
+   "level": 2,
+   "name": "Por factores y cancelando",
+   "summary": "Partir el divisor en factores de una cifra, o simplificar ambos números primero.",
+   "example": "784 ÷ 56 = 784 ÷ 7 ÷ 8 = 112 ÷ 8 = 14",
+   "schools": [
+    "Nugmanov",
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "div.5-25-125",
+   "branch": "DIV",
+   "level": 2,
+   "name": "÷5, ÷25, ÷125",
+   "summary": "Multiplicar por 2, 4 u 8 y correr la coma.",
+   "example": "632 ÷ 125 = 632 × 8 ÷ 1000 = 5,056",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "div.divisor-terminado-en-5",
+   "branch": "DIV",
+   "level": 2,
+   "name": "Divisor terminado en 5",
+   "summary": "Doblar ambos números para que el divisor termine en 0.",
+   "example": "371 ÷ 35 = 742 ÷ 70 = 10,6",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "div.reglas-de-divisibilidad",
+   "branch": "DIV",
+   "level": 2,
+   "name": "Reglas de divisibilidad",
+   "summary": "Saber si una división es exacta antes de hacerla. Para 7 (bajo 1000): 2 × centenas + últimas dos cifras.",
+   "example": "371: 2×3 + 71 = 77 → divisible por 7 (371 = 7 × 53)",
+   "schools": [
+    "Nugmanov",
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "div.fraccion-decimal",
+   "branch": "DIV",
+   "level": 2,
+   "name": "Fracción ↔ decimal ↔ %",
+   "summary": "Llevar el denominador a 100 o usar un recíproco conocido.",
+   "example": "51/125 → 100 ÷ 12,5 × 51 = 8 × 51 = 408 → 40,8%",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "div.9-por-sumas-acumuladas",
+   "branch": "DIV",
+   "level": 3,
+   "name": "÷9 por sumas acumuladas",
+   "summary": "Cada cifra del cociente es la suma acumulada de las cifras; la última suma es el resto.",
+   "example": "1234 ÷ 9 → 1 | 1+2 | 3+3 = 136, resto 6+4 = 10 = 9+1 → 137 r1",
+   "schools": [
+    "Védicas"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "div.septimos-ciclicos",
+   "branch": "DIV",
+   "level": 3,
+   "name": "Séptimos cíclicos",
+   "summary": "Todos los n/7 son rotaciones de 142857.",
+   "example": "3/7 = 0,428571   5/7 = 0,714285",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "div.division-flag-dhvajanka",
+   "branch": "DIV",
+   "level": 4,
+   "name": "División Flag (Dhvajanka)",
+   "summary": "División directa por divisores de 2-3 cifras: \"pole\" divide, \"flag\" corrige.",
+   "example": "3517 ÷ 127 = 27,69…",
+   "schools": [
+    "Védicas",
+    "Abhishek"
+   ],
+   "kind": "Exacta",
+   "show": false,
+   "note": "Cada cifra es provisoria hasta el paso siguiente: si la siguiente resta da negativo, se baja en 1."
+  },
+  {
+   "id": "div.1-19-1-29-ekadhikena",
+   "branch": "DIV",
+   "level": 4,
+   "name": "1/19, 1/29… (Ekadhikena)",
+   "summary": "Decimales de 1/(n9) generados doblando (×2 para 19, ×3 para 29) de derecha a izquierda.",
+   "example": "1/19: 1 → 21 → 421 → 8421 → … → 0,052631578947368421",
+   "schools": [
+    "Védicas"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "rai.raiz-de-un-cuadrado-perfecto",
+   "branch": "RAI",
+   "level": 3,
+   "name": "Raíz de un cuadrado perfecto",
+   "summary": "Última cifra da dos candidatos; el rango de las primeras cifras decide.",
+   "example": "√5329: termina en 9 → 3 o 7; 53 está entre 7² y 8² → 7_; 75² = 5625 > 5329 → 73",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "rai.raiz-cubica-de-un-cubo-perfecto",
+   "branch": "RAI",
+   "level": 3,
+   "name": "Raíz cúbica de un cubo perfecto",
+   "summary": "La última cifra del cubo identifica la de la raíz (única); los miles dan la primera.",
+   "example": "∛300763: termina en 3 → 7; 300 está entre 6³ y 7³ → 67",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "rai.raiz-quinta-de-una-potencia-perfecta",
+   "branch": "RAI",
+   "level": 4,
+   "name": "Raíz quinta de una potencia perfecta",
+   "summary": "La raíz quinta termina en la misma cifra que el número.",
+   "example": "⁵√69343957: termina en 7; 693 entre 3⁵ y 4⁵ → 37",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "rai.linealizacion",
+   "branch": "RAI",
+   "level": 3,
+   "name": "Linealización",
+   "summary": "√N ≈ √C + (N − C) / (2√C), con C el cuadrado perfecto más cercano.",
+   "example": "√39 ≈ 6 + 3/12 = 6,25 (real 6,245)",
+   "schools": [
+    "Nugmanov",
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "rai.iteracion-de-newton",
+   "branch": "RAI",
+   "level": 4,
+   "name": "Iteración de Newton",
+   "summary": "x' = (x + N/x) / 2. Cada vuelta duplica las cifras correctas.",
+   "example": "√2 desde 1,5: (1,5 + 1,333) / 2 = 1,4167 (real 1,4142)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "rai.raiz-no-exacta-cifra-a-cifra",
+   "branch": "RAI",
+   "level": 5,
+   "name": "Raíz no exacta cifra a cifra",
+   "summary": "Algoritmo clásico o dúplex védico para obtener 5 o más decimales.",
+   "example": "Disciplina oficial: 6 dígitos con 5 decimales",
+   "schools": [
+    "Védicas",
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "rai.raices-altas-de-numeros-enormes",
+   "branch": "RAI",
+   "level": 5,
+   "name": "Raíces altas de números enormes",
+   "summary": "Raíz 13ª de un número de 100 dígitos: el resultado tiene 8 cifras y se acota con logaritmos y terminaciones.",
+   "example": "Récord oficial: 13,55 s (Lemaire, 2002)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "log.logaritmos-por-descomposicion",
+   "branch": "LOG",
+   "level": 4,
+   "name": "Logaritmos por descomposición",
+   "summary": "Factorizar y sumar logs memorizados.",
+   "example": "log 6 = log 2 + log 3 = 0,778\nlog 5 = 1 − log 2 = 0,699",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "log.cifras-de-una-potencia",
+   "branch": "LOG",
+   "level": 4,
+   "name": "Cifras de una potencia",
+   "summary": "Número de cifras = parte entera de n·log(b) + 1.",
+   "example": "2⁶⁴: 64 × 0,30103 = 19,27 → 20 cifras",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "log.ln-y-e",
+   "branch": "LOG",
+   "level": 4,
+   "name": "ln y eˣ",
+   "summary": "ln 2 = 0,693, ln 10 = 2,303; eˣ ≈ 1 + x + x²/2 para x chico.",
+   "example": "e^0,1 ≈ 1 + 0,1 + 0,005 = 1,105 (real 1,1052)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "cal.doomsday-conway",
+   "branch": "CAL",
+   "level": 3,
+   "name": "Doomsday (Conway)",
+   "summary": "Fechas ancla que caen el mismo día cada año: 4/4, 6/6, 8/8, 10/10, 12/12, 9/5, 5/9, 7/11, 11/7 y el último de febrero.",
+   "example": "18-09-2026: doomsday 2026 = sábado → 5/9 y 19/9 sábado → 18/9 viernes",
+   "schools": [
+    "Conway"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "cal.codigo-del-ano-odd-11",
+   "branch": "CAL",
+   "level": 3,
+   "name": "Código del año \"Odd + 11\"",
+   "summary": "Si es impar suma 11, divide por 2, si es impar suma 11, toma módulo 7 y réstalo de 7.",
+   "example": "26 → 13 → 24 → 24 mod 7 = 3 → 7 − 3 = 4 → martes (ancla 2000) + 4 = sábado",
+   "schools": [
+    "Conway"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "cal.metodo-de-codigos",
+   "branch": "CAL",
+   "level": 4,
+   "name": "Método de códigos",
+   "summary": "(día + código mes + código año + código siglo) mod 7. Es el más rápido una vez memorizados los códigos.",
+   "example": "20-07-1969: día 20 + julio 6 + año (69+17) mod 7 = 2 + siglo 1900 0 = 28 → 28 mod 7 = 0 = domingo",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "est.dos-cifras-significativas",
+   "branch": "EST",
+   "level": 2,
+   "name": "Dos cifras significativas",
+   "summary": "Redondear a dos cifras, no a una: el error baja de ~30% a ~1%.",
+   "example": "158 × 371 ≈ 160 × 370 = 59200 (real 58618)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false,
+   "note": "Nugmanov redondea a una cifra y sus propios ejemplos fallan por 30%."
+  },
+  {
+   "id": "est.redondeo-compensado",
+   "branch": "EST",
+   "level": 2,
+   "name": "Redondeo compensado",
+   "summary": "En + y × redondear en sentidos opuestos; en − y ÷, en el mismo sentido.",
+   "example": "67 + 26 ≈ 70 + 20 = 90 (real 93)",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "est.notacion-cientifica",
+   "branch": "EST",
+   "level": 2,
+   "name": "Notación científica",
+   "summary": "Multiplicar mantisas y sumar exponentes por separado.",
+   "example": "3,2×10⁴ × 6×10⁵ = 19,2×10⁹ ≈ 2×10¹⁰",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "est.2-10",
+   "branch": "EST",
+   "level": 3,
+   "name": "2¹⁰ ≈ 10³",
+   "summary": "Pasar entre potencias de 2 y de 10.",
+   "example": "2³⁰ ≈ 10⁹   2⁴⁰ ≈ 10¹²",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "est.problemas-de-fermi",
+   "branch": "EST",
+   "level": 3,
+   "name": "Problemas de Fermi",
+   "summary": "Descomponer una magnitud desconocida en factores estimables y multiplicarlos.",
+   "example": "Mercado = población × % que usa × frecuencia × precio",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "est.1-x-1-nx",
+   "branch": "EST",
+   "level": 3,
+   "name": "(1 + x)ⁿ ≈ 1 + nx",
+   "summary": "Linealizar potencias y raíces de números cercanos a 1.",
+   "example": "1,02⁵ ≈ 1,10 (real 1,104)   √1,06 ≈ 1,03",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "est.interpolacion-lineal",
+   "branch": "EST",
+   "level": 3,
+   "name": "Interpolación lineal",
+   "summary": "Estimar entre dos valores conocidos por proporción.",
+   "example": "√30: entre 5 (25) y 6 (36) → 5 + 5/11 = 5,45 (real 5,477)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "ver.ultimo-digito",
+   "branch": "VER",
+   "level": 1,
+   "name": "Último dígito",
+   "summary": "El último dígito del resultado depende solo de los últimos dígitos de los datos.",
+   "example": "134 + 281 = 426? 4 + 1 = 5 ≠ 6 → error (es 415)",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Verificación",
+   "show": false
+  },
+  {
+   "id": "ver.cantidad-de-digitos",
+   "branch": "VER",
+   "level": 1,
+   "name": "Cantidad de dígitos",
+   "summary": "Un producto tiene tantos dígitos como los factores juntos, o uno menos.",
+   "example": "89 × 94871 = 11643519? 2 + 5 dígitos ≠ 8 → error",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Verificación",
+   "show": false
+  },
+  {
+   "id": "ver.prueba-del-9",
+   "branch": "VER",
+   "level": 2,
+   "name": "Prueba del 9",
+   "summary": "Reemplazar cada número por la suma de sus cifras y repetir la operación. División: reescribirla como multiplicación.",
+   "example": "263 × 546 = 148598? 2 × 6 = 12 → 3, pero 148598 → 8 → error (es 143598)",
+   "schools": [
+    "Védicas",
+    "Nugmanov",
+    "Abhishek"
+   ],
+   "kind": "Verificación",
+   "show": false,
+   "note": "No detecta cifras permutadas: 1569 en vez de 1596 pasa la prueba."
+  },
+  {
+   "id": "ver.prueba-del-11",
+   "branch": "VER",
+   "level": 3,
+   "name": "Prueba del 11",
+   "summary": "Suma alternada de cifras desde la derecha. Detecta permutaciones y comas mal puestas.",
+   "example": "42 × 38: 9 × 5 = 45 → 1. 1596 → 1 ✓   1569 → 7 ✗",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Verificación",
+   "show": false
+  },
+  {
+   "id": "ver.segunda-via",
+   "branch": "VER",
+   "level": 2,
+   "name": "Segunda vía",
+   "summary": "Recalcular con otra técnica (no repetir la misma, que repite el error).",
+   "example": "42 × 38: distributiva 1680 − 84 = 1596; diferencia de cuadrados 1600 − 4 = 1596",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Verificación",
+   "show": false
+  },
+  {
+   "id": "fin.bloques-de-10-5-y-1",
+   "branch": "FIN",
+   "level": 1,
+   "name": "Bloques de 10%, 5% y 1%",
+   "summary": "Construir cualquier porcentaje con piezas que se obtienen corriendo la coma.",
+   "example": "34% de 150 = 3×15 + 4×1,5 = 51\n15% de 84 = 8,4 + 4,2 = 12,6",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "fin.x-de-y-y-de-x",
+   "branch": "FIN",
+   "level": 2,
+   "name": "x% de y = y% de x",
+   "summary": "Dar vuelta el porcentaje cuando el otro lado es más fácil.",
+   "example": "8% de 25 = 25% de 8 = 2",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "fin.cambios-sucesivos-a-b-ab",
+   "branch": "FIN",
+   "level": 2,
+   "name": "Cambios sucesivos: a + b + ab",
+   "summary": "Componer dos variaciones porcentuales sin multiplicar factores.",
+   "example": "+20% y −20% → 20 − 20 − 4 = −4%\n+10% y +10% → 21%",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "fin.reglas-del-72-114-y-144",
+   "branch": "FIN",
+   "level": 2,
+   "name": "Reglas del 72, 114 y 144",
+   "summary": "Años para duplicar, triplicar o cuadruplicar ≈ 72, 114 o 144 ÷ tasa. Precisa entre 6% y 10%.",
+   "example": "8%: duplica en 72/8 = 9 años (real 9,01); triplica en 114/8 = 14,3 (real 14,27)",
+   "schools": [
+    "Nugmanov",
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "fin.p-e-rendimiento",
+   "branch": "FIN",
+   "level": 2,
+   "name": "P/E ↔ rendimiento",
+   "summary": "El inverso del múltiplo es el rendimiento de las utilidades.",
+   "example": "P/E 20 → 1/20 = 5%   P/E 12,5 → 8%",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "fin.perpetuidad-y-gordon",
+   "branch": "FIN",
+   "level": 3,
+   "name": "Perpetuidad y Gordon",
+   "summary": "Valor = flujo / (r − g).",
+   "example": "Flujo 100, r 8%, g 3% → 100 / 0,05 = 2000",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "fin.tasa-mensual-anual",
+   "branch": "FIN",
+   "level": 3,
+   "name": "Tasa mensual ↔ anual",
+   "summary": "Compuesta: (1 + m)¹² − 1 ≈ 12m + 66m².",
+   "example": "1% mensual → 12% + 0,66% = 12,66% (real 12,68%)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "fin.crecimiento-compuesto-binomial",
+   "branch": "FIN",
+   "level": 4,
+   "name": "Crecimiento compuesto binomial",
+   "summary": "Total ≈ nr + n(n−1)/2·r² + n(n−1)(n−2)/6·r³.",
+   "example": "5% por 10 años: 50% + 11,25% + 1,5% = 62,75% (real 62,89%)",
+   "schools": [
+    "Nugmanov"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "fin.tasa-continua-ln-1-r-r-r-2",
+   "branch": "FIN",
+   "level": 4,
+   "name": "Tasa continua: ln(1 + r) ≈ r − r²/2",
+   "summary": "Pasar entre tasas discretas y continuas.",
+   "example": "10% → 0,10 − 0,005 = 9,5% (real 9,53%)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "fun.multiplos-ancla",
+   "branch": "FUN",
+   "level": 2,
+   "name": "Múltiplos ancla",
+   "summary": "Los que más aparecen en precios, horas y porcentajes: ×12, ×15, ×25, ×75.",
+   "example": "7×15 = 105   12×12 = 144   3×75 = 225",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "fun.constantes-utiles",
+   "branch": "FUN",
+   "level": 3,
+   "name": "Constantes útiles",
+   "summary": "Valores que conviene saber de memoria para estimar.",
+   "example": "π ≈ 3,1416   e ≈ 2,718   √2 ≈ 1,414   √3 ≈ 1,732",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "fun.ternas-pitagoricas",
+   "branch": "FUN",
+   "level": 3,
+   "name": "Ternas pitagóricas",
+   "summary": "Triángulos rectángulos con lados enteros. Aparecen mucho en geometría de pruebas.",
+   "example": "3-4-5   5-12-13   8-15-17   7-24-25",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "mag.escalera-de-nombres",
+   "branch": "MAG",
+   "level": 2,
+   "name": "Escalera de nombres",
+   "summary": "mil = 10³, millón = 10⁶, mil millones (MM) = 10⁹, billón = 10¹². El billion inglés es 10⁹: nuestros mil millones.",
+   "example": "US$ 2 billion = US$ 2.000 millones = US$ 2 MM",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false,
+   "note": "Confundir billón con billion es el error de magnitud más común en finanzas."
+  },
+  {
+   "id": "mag.mantisa-y-potencia-por-separado",
+   "branch": "MAG",
+   "level": 2,
+   "name": "Mantisa y potencia por separado",
+   "summary": "Operar los números chicos y sumar los ceros aparte.",
+   "example": "3,2 millones × 4500 = (3,2 × 4,5) × 10⁶ × 10³ = 14,4 × 10⁹ = 14.400 millones",
+   "schools": [
+    "Nugmanov",
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mag.dividir-magnitudes",
+   "branch": "MAG",
+   "level": 2,
+   "name": "Dividir magnitudes",
+   "summary": "Dividir las mantisas y restar los exponentes.",
+   "example": "18.000 millones ÷ 3,6 millones = (18 ÷ 3,6) × 10³ = 5000",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mag.per-capita-y-por-unidad",
+   "branch": "MAG",
+   "level": 3,
+   "name": "Per cápita y por unidad",
+   "summary": "Pasar de totales a cifras por persona, cliente o unidad.",
+   "example": "Ventas US$ 300 millones ÷ 20 millones de clientes = US$ 15 por cliente",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mag.puntos-base-sobre-montos-grandes",
+   "branch": "MAG",
+   "level": 3,
+   "name": "Puntos base sobre montos grandes",
+   "summary": "1 pb = 0,01%. Monto × pb ÷ 10.000.",
+   "example": "25 pb sobre US$ 2.000 millones = 2.000 × 25 ÷ 10.000 = US$ 5 millones",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.x15-y-x1-5",
+   "branch": "MUL",
+   "level": 2,
+   "name": "×15 y ×1,5",
+   "summary": "Multiplicar por 10 y sumar la mitad.",
+   "example": "46 × 15 = 460 + 230 = 690\n1,5 × 84 = 84 + 42 = 126",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "mul.close-together-benjamin",
+   "branch": "MUL",
+   "level": 3,
+   "name": "Close-together (Benjamin)",
+   "summary": "Dos números cerca de una base z: z × (a + d₂) + d₁·d₂. Sirve con cualquier base, también de 3 dígitos.",
+   "example": "107 × 111 = 100 × 118 + 7 × 11 = 11877",
+   "schools": [
+    "Benjamin"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "pot.3-digitos-terminados-en-5",
+   "branch": "POT",
+   "level": 3,
+   "name": "3 dígitos terminados en 5",
+   "summary": "La misma regla que con 2 dígitos: n × (n+1) | 25.",
+   "example": "115² → 11 × 12 | 25 = 13225",
+   "schools": [
+    "Védicas"
+   ],
+   "kind": "Exacta",
+   "show": true
+  },
+  {
+   "id": "pot.ultimo-digito-de-potencias",
+   "branch": "POT",
+   "level": 4,
+   "name": "Último dígito de potencias",
+   "summary": "Las terminaciones se repiten en ciclos de 4 o menos.",
+   "example": "7²⁰²⁶: ciclo 7, 9, 3, 1; 2026 mod 4 = 2 → termina en 9",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "div.comparar-fracciones-en-cruz",
+   "branch": "DIV",
+   "level": 3,
+   "name": "Comparar fracciones en cruz",
+   "summary": "a/b contra c/d: comparar a×d con b×c, sin pasar a decimal.",
+   "example": "7/9 vs 11/14: 7×14 = 98 < 9×11 = 99 → 11/14 es mayor",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "ver.adivinar-el-digito-escondido",
+   "branch": "VER",
+   "level": 3,
+   "name": "Adivinar el dígito escondido",
+   "summary": "Show con la prueba del 9: alguien multiplica, esconde un dígito (que no sea 0) del resultado y te dicta el resto.",
+   "example": "263 × 546 = 143598. Esconde el 3 y dicta 1, 4, 5, 9, 8 → suman 27 → 0. Los factores dan 3 → falta un 3",
+   "schools": [
+    "Védicas"
+   ],
+   "kind": "Verificación",
+   "show": true
+  },
+  {
+   "id": "log.raiz-n-esima-por-logaritmos",
+   "branch": "LOG",
+   "level": 4,
+   "name": "Raíz n-ésima por logaritmos",
+   "summary": "log(raíz) = log(número) ÷ n, y volver interpolando entre logs conocidos.",
+   "example": "⁷√1000: 3 ÷ 7 = 0,4286, entre log 2,5 (0,398) y log 3 (0,477) → ≈ 2,7 (real 2,683)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "fin.margen-vs-markup",
+   "branch": "FIN",
+   "level": 2,
+   "name": "Margen vs markup",
+   "summary": "Un markup k sobre el costo equivale a un margen k/(1+k) sobre el precio.",
+   "example": "Markup 25% = margen 20%   Markup 50% = margen 33,3%",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "fin.subir-y-bajar-no-es-simetrico",
+   "branch": "FIN",
+   "level": 2,
+   "name": "Subir y bajar no es simétrico",
+   "summary": "Para deshacer un alza de x hay que bajar x/(1+x).",
+   "example": "Sube 25% → para volver baja 20%\nCae 50% → para volver sube 100%",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "fin.rentabilidad-anualizada",
+   "branch": "FIN",
+   "level": 3,
+   "name": "Rentabilidad anualizada",
+   "summary": "De un retorno total a uno anual: x/n menos la corrección (n−1)·x²/(2n²).",
+   "example": "14% en 3 años → 4,67% − 0,22% = 4,45% anual (real 4,46%)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "fin.rentabilidad-real-fisher",
+   "branch": "FIN",
+   "level": 3,
+   "name": "Rentabilidad real (Fisher)",
+   "summary": "Real ≈ nominal − inflación, y un poco menos.",
+   "example": "Nominal 8%, inflación 4% → ≈ 4%; exacto 1,08 ÷ 1,04 − 1 = 3,85%",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "chi.agregar-iva-19",
+   "branch": "CHI",
+   "level": 1,
+   "name": "Agregar IVA (19%)",
+   "summary": "Neto × 1,19 = neto + 20% − 1%.",
+   "example": "Neto $50.000 → 50.000 + 10.000 − 500 = $59.500",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "chi.sacar-el-iva",
+   "branch": "CHI",
+   "level": 2,
+   "name": "Sacar el IVA",
+   "summary": "Bruto ÷ 1,19 ≈ bruto × 0,84. El IVA incluido es cerca del 16% del bruto.",
+   "example": "$59.500 × 0,84 = $49.980 (exacto $50.000)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "chi.propina-y-cuenta-dividida",
+   "branch": "CHI",
+   "level": 1,
+   "name": "Propina y cuenta dividida",
+   "summary": "Propina 10% = correr la coma. Dividir entre n con división corta.",
+   "example": "$187.400 + 10% = $206.140 ÷ 6 ≈ $34.357 por persona",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "chi.uf-pesos",
+   "branch": "CHI",
+   "level": 2,
+   "name": "UF → pesos",
+   "summary": "Ancla redonda y corrección. La UF sube unos pocos pesos al día, así que el ancla sirve semanas.",
+   "example": "UF del 20-10-2026 = $41.189\n35 UF ≈ 35 × 41.200 = $1.442.000 (exacto $1.441.623)",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "chi.pesos-dolares",
+   "branch": "CHI",
+   "level": 2,
+   "name": "Pesos → dólares",
+   "summary": "Dividir por el dólar del día usando un ancla redonda.",
+   "example": "Con un dólar de ejemplo de $950: $1.900.000 ÷ 950 = US$ 2.000",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false,
+   "note": "El dólar es un valor de ejemplo; la app cargará el del día."
+  },
+  {
+   "id": "chi.uf-dolares",
+   "branch": "CHI",
+   "level": 3,
+   "name": "UF → dólares",
+   "summary": "UF ÷ dólar = dólares por UF. Memoriza ese cociente y convierte en un solo paso.",
+   "example": "UF $41.189 y dólar de ejemplo $950 → 1 UF ≈ US$ 43,4 → 35 UF ≈ US$ 1.517",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "pru.fracciones-decimales-con-multiplos",
+   "branch": "PRU",
+   "level": 2,
+   "name": "Fracciones ↔ decimales con múltiplos",
+   "summary": "En pruebas sin calculadora conviene ver 0,375 y pensar 3/8.",
+   "example": "3/8 = 0,375   5/6 = 0,8333   7/12 = 0,5833",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Memoria",
+   "show": false
+  },
+  {
+   "id": "pru.cancelar-antes-de-multiplicar",
+   "branch": "PRU",
+   "level": 2,
+   "name": "Cancelar antes de multiplicar",
+   "summary": "Simplificar factores en cruz en productos de fracciones.",
+   "example": "(14/15) × (25/28) = (1/3) × (5/2) = 5/6",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "pru.descartar-alternativas",
+   "branch": "PRU",
+   "level": 2,
+   "name": "Descartar alternativas",
+   "summary": "En selección múltiple, la magnitud y el último dígito eliminan casi todas las opciones.",
+   "example": "387 × 42 entre 1625, 16254, 16258 y 162540: ≈ 16.000 descarta dos; termina en 4 → 16254",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Aproximada",
+   "show": false
+  },
+  {
+   "id": "pru.promedio-por-desviaciones",
+   "branch": "PRU",
+   "level": 3,
+   "name": "Promedio por desviaciones",
+   "summary": "Elegir una base y promediar solo las desviaciones.",
+   "example": "Notas 6,0 · 6,0 · 6,0 · 4,0 con base 6: (0+0+0−2) ÷ 4 = −0,5 → 5,5",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "pru.velocidad-media-armonica",
+   "branch": "PRU",
+   "level": 3,
+   "name": "Velocidad media (armónica)",
+   "summary": "Ida y vuelta a velocidades distintas: 2ab/(a+b), nunca el promedio simple.",
+   "example": "Ida 60 km/h, vuelta 40 km/h → 2×60×40 ÷ 100 = 48 km/h",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  },
+  {
+   "id": "pru.porcentaje-de-un-porcentaje",
+   "branch": "PRU",
+   "level": 3,
+   "name": "Porcentaje de un porcentaje",
+   "summary": "Multiplicar como decimales.",
+   "example": "30% del 40% = 0,3 × 0,4 = 12%",
+   "schools": [
+    "Común"
+   ],
+   "kind": "Exacta",
+   "show": false
+  }
+ ]
+}
